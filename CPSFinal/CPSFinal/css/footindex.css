@@ -1,0 +1,64 @@
+﻿/* Footer */
+
+.page {
+    font-family: Oswald;
+    font-weight: 500;
+    color: white;
+    background-color: #0078ad;
+    margin-top: 15em;
+    margin-bottom:0.5em;
+}
+
+.content {
+    color: black;
+}
+
+#cnt {
+    padding-left: 0.5em;
+    font-size: 3rem;
+    margin-top: 25px;
+    padding-top: 15px;
+}
+
+#sce {
+    font-size: 25px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#add {
+    padding-left: 27em;
+}
+
+#ph {
+    padding-left: 32em;
+}
+
+#ph1 {
+    padding-left: 3em;
+}
+
+#mail {
+    padding-left: 38em;
+}
+
+#copy {
+    padding-left: 34.5em;
+}
+
+/* ICONS */
+
+ul.social {
+    display: block;
+    text-align: center;
+}
+
+.fa-lg {
+    color: black;
+}
+
+ul.social li {
+    font-size: 3em;
+    display: inline;
+    padding: 0 2%;
+}

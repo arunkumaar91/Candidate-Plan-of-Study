@@ -1,0 +1,83 @@
+﻿/* ---------------------------------------------------------------------
+                               Global Styles
+----------------------------------------------------------------------*/
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* To ensure images, videos, objects not to overlap in the webpage: Default */
+
+img,
+embed,
+object,
+video {
+    max-width: 100%;
+}
+
+/* Body */
+
+body{
+    margin-left:4px;
+    margin-right:4px;
+    padding-left:7em;
+    padding-right:7em;
+}
+
+
+/* navbar */
+
+.navbar {
+    display: inline;
+    font-family: Oswald;
+    font-size: 1.2em;
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+    .navbar-brand > img {
+        height: 100%;
+        padding: 15px;
+        width: initial;
+    }
+
+.heading{
+    margin-top: 20px;
+    font-family: Oswald;
+    text-align:center;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+    .heading:hover {
+        color: #018744;
+    }
+
+.sgn {
+    background-color: #018744;
+    display: block;
+    float: right;
+    color: white;
+    border-style:none;
+}
+
+.menubuttons {
+    display: block;
+}
+
+.btn-group-lg > .btn, .btn-lg {
+    padding: 10px 45px;
+    font-size: 20px;
+    line-height: 1.3333333;
+    border-radius: 1px;
+    width: 12em;
+}
+
+.ca{
+    font-family:Oswald;
+}
