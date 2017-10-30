@@ -58,5 +58,11 @@ namespace AchieversCPS
             mandatedClasses = dal.GetAllMandatoryCourses(p);
             return mandatedClasses;
         }
+
+        internal List<Student> GetAllStudentsBySemester(string deptName,string p1, int p2)
+        {
+            List<Student> studentList = dal.GetAllStudentsBySemester(deptName, p1, p2);
+            return studentList;
+        }
     }
 }

@@ -97,7 +97,7 @@
                     </tr>
                     <tr>
                         <td class="auto-style2">
-                            <asp:DropDownList ID="drpDwnlist_depName" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDepts" runat="server"></asp:DropDownList>
                         </td>
 
                         <td>&nbsp;&nbsp;&nbsp;
@@ -106,7 +106,7 @@
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:TextBox ID="txt_year" runat="server"></asp:TextBox>
                         </td>
-                        <td>&nbsp;<asp:Button ID="btn_viewStudentList" runat="server" CssClass="viewbtn" Text="View Student List" />
+                        <td>&nbsp;<asp:Button ID="btn_viewStudentList" runat="server" CssClass="viewbtn" Text="View Student List" OnClick="btn_viewStudentList_Click" />
                         </td>
 
 
@@ -115,7 +115,7 @@
                 <table style="align-content: center; text-align: center; align-self: auto">
                     <tr>
                         <td>
-                            <asp:GridView ID="grdfdnCourses" runat="server">
+                            <asp:GridView ID="grdAllStudents" runat="server">
                                 <Columns>
                                     <asp:HyperLinkField />
                                 </Columns>
@@ -125,9 +125,11 @@
                 </table>
             </asp:Panel>
             <asp:Panel ID="AddCatalogPanel" Visible="false" runat="server">
-                <asp:DropDownList ID="ddlDepts" runat="server"></asp:DropDownList>
-                <iframe id="frame1" src="DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx" mce_src="/DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx" scrolling="auto"></iframe>
-                <%--<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQHejlE7GDpux44fEom8uP-u3szIYDsRzjBzu4OUNj-KfBPdUY0QWHBZQ0DHMjsa2gTTPV3UZyTRqjb/pubhtml?widget=true&amp;headers=false" style="height:650px;width:825px"></iframe>--%>
+
+                <asp:Label ID="lblCatalog" runat="server" Text="You can download Catalog by clicking button below!!"></asp:Label>
+    <asp:Button ID="btnDownload" runat="server" Text="Download Catalog" OnClick="btnDownload_Click" />
+    <asp:FileUpload ID="FileUpload1" runat="server"  />
+    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click1" />
             </asp:Panel>
         </div>
 

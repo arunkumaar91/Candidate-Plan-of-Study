@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +13,7 @@ namespace AchieversCPS
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack) { 
             if (Session["userRole"] == null)
             {
                 Session["user"] = null;
@@ -25,7 +27,22 @@ namespace AchieversCPS
             AchieversDAL dal = new AchieversDAL();
             ddlDepts.DataSource = dal.GetAllDept();
             ddlDepts.DataBind();
-            AddCatalogPanel.Visible = true;
+            if(DateTime.Now.Month<4)
+            {
+                txt_sem.Text = "Spring";
+                txt_year.Text = DateTime.Now.Year.ToString();
+            }
+            else if(DateTime.Now.Month>8)
+            {
+                txt_sem.Text = "Fall";
+                txt_year.Text = DateTime.Now.Year.ToString();
+            }
+            else
+            {
+                txt_sem.Text = "Summer";
+                txt_year.Text = DateTime.Now.Year.ToString();
+            }
+            }
         }
         protected void sgnButton_Click(object sender, EventArgs e)
         {
@@ -45,6 +62,43 @@ namespace AchieversCPS
         {
             AddCatalogPanel.Visible = true;
             generateformpanel.Visible = false;
+            
+        }
+
+        protected void btn_viewStudentList_Click(object sender, EventArgs e)
+        {
+            AchieversBL busL = new AchieversBL();
+            List<Student> studentList =new List<Student>();
+            studentList = busL.GetAllStudentsBySemester(ddlDepts.SelectedItem.Text, txt_sem.Text,int.Parse(txt_year.Text));
+            grdAllStudents.DataSource = studentList;
+            grdAllStudents.DataBind();
+        }
+
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            Response.ContentType = "Application/xlsx";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=UHCL_EM_ACTIVE_COURSE_CATALOG_7133_"+DateTime.Now.Year+".xlsx");
+            Response.TransmitFile(Server.MapPath("~/DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx"));
+            Response.End();
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnUpload_Click1(object sender, EventArgs e)
+        {
+            
+            if (FileUpload1.FileName.EndsWith(".xlsx")) 
+            { 
+                string fileName= Path.GetFileName(FileUpload1.FileName);
+                File.Copy(fileName, "~/DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133_" + DateTime.Now.Year + ".xlsx", true); 
+            }
+            else
+            {
+                Response.Write("Please upload excel file");
+            }
             
         }
     }

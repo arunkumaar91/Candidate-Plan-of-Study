@@ -112,13 +112,13 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.Label lbl_year;
         
         /// <summary>
-        /// drpDwnlist_depName control.
+        /// ddlDepts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpDwnlist_depName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepts;
         
         /// <summary>
         /// txt_sem control.
@@ -148,13 +148,13 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.Button btn_viewStudentList;
         
         /// <summary>
-        /// grdfdnCourses control.
+        /// grdAllStudents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdfdnCourses;
+        protected global::System.Web.UI.WebControls.GridView grdAllStudents;
         
         /// <summary>
         /// AddCatalogPanel control.
@@ -166,12 +166,39 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.Panel AddCatalogPanel;
         
         /// <summary>
-        /// ddlDepts control.
+        /// lblCatalog control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDepts;
+        protected global::System.Web.UI.WebControls.Label lblCatalog;
+        
+        /// <summary>
+        /// btnDownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDownload;
+        
+        /// <summary>
+        /// FileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        
+        /// <summary>
+        /// btnUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpload;
     }
 }

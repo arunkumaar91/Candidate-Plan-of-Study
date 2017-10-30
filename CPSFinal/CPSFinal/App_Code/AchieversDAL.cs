@@ -123,17 +123,12 @@ namespace AchieversCPS
                         student.StudentId = (int)reader["studentId"];
                         student.StudentName = reader["studentFirstName"].ToString()+reader["studentLastName"].ToString();
                         student.ProgramName=reader["programName"].ToString();
-                        student.Address=reader["resAddress"].ToString();
-                        student.contactNumber=reader["contactNumber"].ToString();
                         student.degreeType = reader["degreetype"].ToString();
-                        student.FacultyAdvisor=reader["firstName"].ToString()+","+reader["lastName"].ToString();
-                        student.gender=reader["gender"].ToString();
                         student.semester=reader["semester"].ToString();
-                        student.StartYear = (DateTime)reader["startYear"];
-                        student.StudentDOB = reader["dateOfBirth"].ToString();
+                        student.StartYear = int.Parse(reader["startYear"].ToString());
                         student.StudentEmail=reader["uhclEmail"].ToString();
                         student.UserName = reader["userName"].ToString();
-                        student.facultyEmail=reader["facultyEmail"].ToString();
+                        student.FacultyAdvisorId =int.Parse( reader["facultyAdvisorId"].ToString());
                         studentList.Add(student);
                     }
                 }
@@ -321,12 +316,8 @@ namespace AchieversCPS
                 insertCommand.Parameters.AddWithValue("@ipvStudentFirstName", firstName);
                 insertCommand.Parameters.AddWithValue("@ipvStudentLastName", lastName);
                 insertCommand.Parameters.AddWithValue("@ipvProgramName", std.ProgramName);
-                insertCommand.Parameters.AddWithValue("@ipvDateOfBirth",std.StudentDOB);
-                insertCommand.Parameters.AddWithValue("@ipvGender", std.gender);
                 insertCommand.Parameters.AddWithValue("@ipvUhclEmail", std.StudentEmail);
-                insertCommand.Parameters.AddWithValue("@ipvResAddesss", std.Address);
-                insertCommand.Parameters.AddWithValue("@ipvContactNumber", std.contactNumber);
-                insertCommand.Parameters.AddWithValue("@ipvFacultyAdvisorId", std.FacultyAdvisor);
+                insertCommand.Parameters.AddWithValue("@ipvFacultyAdvisorId", std.FacultyAdvisorId);
                 insertCommand.Parameters.AddWithValue("@ipvDegreeetype", std.degreeType);
                 insertCommand.Parameters.AddWithValue("@ipvSemester", std.semester);
                 insertCommand.Parameters.AddWithValue("@ipvStartYear",DateTime.Now);
@@ -392,6 +383,51 @@ namespace AchieversCPS
                 }
             }
             return mandatoryClasses;
+        }
+
+        internal List<Student> GetAllStudentsBySemester(string p1,string sem, int p2)
+        {
+            List<Student> studentList = new List<Student>();
+            try
+            {
+                conn1.Open();                
+                SqlCommand selectCommand = new SqlCommand("dbo.GetAllStudentsBySemnDept", conn1);
+                selectCommand.CommandType = CommandType.StoredProcedure;
+                selectCommand.Parameters.AddWithValue("@ipvDeptName", p1);
+                selectCommand.Parameters.AddWithValue("@ipvSemester",sem);
+                selectCommand.Parameters.AddWithValue("@ipvYear", p2);
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Student student = new Student();
+                        student.StudentId =int.Parse( reader["studentId"].ToString());
+                        student.StudentName = reader["studentFirstName"].ToString() +" " + reader["studentLastName"].ToString();
+                        student.ProgramName=reader["programName"].ToString();
+                        student.StudentEmail = reader["uhclEmail"].ToString();
+                        student.semester = reader["semester"].ToString();
+                        student.StartYear = int.Parse( reader["startYear"].ToString());
+                        student.UserName = reader["userName"].ToString();
+                        student.degreeType = reader["degreetype"].ToString();
+                        student.FacultyAdvisorId = int.Parse( reader["facultyAdvisorId"].ToString());
+                        studentList.Add(student);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conn1.State == ConnectionState.Open || conn2.State == ConnectionState.Open)
+                {
+                    conn1.Close();
+                    
+                }
+            }
+            return studentList;
         }
     }
 }
