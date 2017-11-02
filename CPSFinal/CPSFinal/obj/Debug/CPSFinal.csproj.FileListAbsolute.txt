@@ -1,0 +1,6 @@
+C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\bin\CPSFinal.dll.config
+C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\bin\CPSFinal.dll
+C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\bin\CPSFinal.pdb
+C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\obj\Debug\CPSFinal.dll
+C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\obj\Debug\CPSFinal.pdb
+C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\obj\Debug\CPSFinal.csprojResolveAssemblyReference.cache

@@ -23,6 +23,11 @@ namespace AchieversCPS
                         List<Student> stu= business.getStudent(studentId);
                         fvStudents.DataSource = stu;
                         fvStudents.DataBind();
+                        string deptName = "CSCI";
+                        AchieversDAL dal = new AchieversDAL();
+                        ddl.DataSource = dal.GetAllCourses(deptName);
+                        ddl.DataBind();
+
                     }
                     else
                     {

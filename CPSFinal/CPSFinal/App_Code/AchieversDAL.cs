@@ -149,9 +149,44 @@ namespace AchieversCPS
             return studentList;
         }
 
+        
+        public List<string> GetAllCourses(string deptName) 
+        { 
+            List<String> courses = new List<string>();
+            try
+            {
+                
+                OleDbCommand myCommand = new OleDbCommand();
+                string sql = null;
+                
+                MyConnection.Open();
+                myCommand.Connection = MyConnection;
+                sql = "SELECT Subject + Catalog + Long Title AS CourseName FROM [Sheet1$] where Subject="+"'"+deptName+"'";
+                myCommand.CommandText = sql;
+                OleDbDataReader reader = myCommand.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        courses.Add(reader["CourseName"].ToString());
+                    }
+                }
+                MyConnection.Close();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if(MyConnection.State==ConnectionState.Open)
+                {
+                    MyConnection.Close();
+                }
+            }
+            return courses; 
+        }
 
-
-        //public List<Student> GetAllStudentsBy
 
         public List<String> GetAllDept()
         {
@@ -345,7 +380,7 @@ namespace AchieversCPS
             return isAdded;
         }
 
-
+       
 
         internal List<CPSClass> GetAllMandatoryCourses(string p)
         {

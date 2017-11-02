@@ -64,7 +64,7 @@
         <div class="heading">
             Welcome
             <asp:Label ID="sgnName" runat="server" Text="Name"></asp:Label>
-            <asp:Button ID="sgnButton" runat="server" Text="SignOut" CssClass="sgn" OnClick="sgnButton_Click" />
+            <asp:Button ID="sgnButton" runat="server" Text="SignOut" CssClass="sgn"/>
         </div>
         <br />
         <br />
@@ -129,6 +129,7 @@
 
             </asp:Panel>
             <asp:Panel ID="pnlFoundation" runat="server">
+                <asp:DropDownList ID="ddl" runat="server"></asp:DropDownList>
                 <asp:FormView ID="fvFoundation" runat="server">
                     <ItemTemplate>
                         <table>

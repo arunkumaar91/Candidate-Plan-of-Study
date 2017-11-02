@@ -11,8 +11,6 @@ namespace AchieversCPS
         public string StudentName { get; set; }
 
         public int facultyAdvisorId { get; set; }
-        public string MandatoryChecker { get; set; }
-        public int MandatedYear { get; set; }
         public string CourseRubric { get; set; }
         public int CourseNumber { get; set; }
         public string CourseName { get; set; }
