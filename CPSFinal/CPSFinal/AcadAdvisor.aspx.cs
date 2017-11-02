@@ -68,7 +68,7 @@ namespace AchieversCPS
         protected void btn_viewStudentList_Click(object sender, EventArgs e)
         {
             AchieversBL busL = new AchieversBL();
-            List<Student> studentList =new List<Student>();
+            List<StudentGrid1> studentList =new List<StudentGrid1>();
             studentList = busL.GetAllStudentsBySemester(ddlDepts.SelectedItem.Text, txt_sem.Text,int.Parse(txt_year.Text));
             grdAllStudents.DataSource = studentList;
             grdAllStudents.DataBind();

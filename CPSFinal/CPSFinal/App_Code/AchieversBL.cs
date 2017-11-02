@@ -19,7 +19,7 @@ namespace AchieversCPS
             return userList;
         }
 
-        public List<Student> getStudent(string userId)
+        public List<Student> getStudent(int userId)
         {
             List<Student> student=new List<Student>();
             student = dal.GetStudent(userId);
@@ -59,9 +59,9 @@ namespace AchieversCPS
             return mandatedClasses;
         }
 
-        internal List<Student> GetAllStudentsBySemester(string deptName,string p1, int p2)
+        internal List<StudentGrid1> GetAllStudentsBySemester(string deptName,string p1, int p2)
         {
-            List<Student> studentList = dal.GetAllStudentsBySemester(deptName, p1, p2);
+            List<StudentGrid1> studentList = dal.GetAllStudentsBySemester(deptName, p1, p2);
             return studentList;
         }
     }

@@ -117,7 +117,7 @@
                         <td>
                             <asp:GridView ID="grdAllStudents" runat="server">
                                 <Columns>
-                                    <asp:HyperLinkField />
+                                    <asp:HyperLinkField  DataTextField="studentId" DataNavigateUrlFields="studentId" DataNavigateUrlFormatString="NewStudentPage.aspx?sid={0}" HeaderText="View Student" SortExpression="studentId" />
                                 </Columns>
                             </asp:GridView>
                         </td>
@@ -127,9 +127,9 @@
             <asp:Panel ID="AddCatalogPanel" Visible="false" runat="server">
 
                 <asp:Label ID="lblCatalog" runat="server" Text="You can download Catalog by clicking button below!!"></asp:Label>
-    <asp:Button ID="btnDownload" runat="server" Text="Download Catalog" OnClick="btnDownload_Click" />
-    <asp:FileUpload ID="FileUpload1" runat="server"  />
-    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click1" />
+                <asp:Button ID="btnDownload" runat="server" Text="Download Catalog" OnClick="btnDownload_Click" />
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+                <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click1" />
             </asp:Panel>
         </div>
 

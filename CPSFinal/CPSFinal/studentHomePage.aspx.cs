@@ -46,7 +46,7 @@ namespace AchieversCPS
                 Users user = new Users();
                 user = (Users)(Session["user"]);
                 AchieversBL bl = new AchieversBL();
-                List<Student> student = bl.getStudent(user.Userid);
+                List<Student> student = bl.getStudent(int.Parse(user.Userid));
 
                 if (student.Count == 1)
                 {

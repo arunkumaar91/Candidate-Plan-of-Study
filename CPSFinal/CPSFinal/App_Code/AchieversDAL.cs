@@ -12,6 +12,7 @@ using System.IO;
 //using Excel = Microsoft.Office.Interop.Excel;
 using System.Data.OleDb;
 
+
 namespace AchieversCPS
 {
 
@@ -105,7 +106,7 @@ namespace AchieversCPS
             return allUsers;
         }
         
-        public List<Student> GetStudent(string studentId)
+        public List<Student> GetStudent(int studentId)
         {
             List<Student> studentList =new List<Student>();
             try
@@ -147,6 +148,8 @@ namespace AchieversCPS
             }
             return studentList;
         }
+
+
 
         //public List<Student> GetAllStudentsBy
 
@@ -385,9 +388,9 @@ namespace AchieversCPS
             return mandatoryClasses;
         }
 
-        internal List<Student> GetAllStudentsBySemester(string p1,string sem, int p2)
+        internal List<StudentGrid1> GetAllStudentsBySemester(string p1,string sem, int p2)
         {
-            List<Student> studentList = new List<Student>();
+            List<StudentGrid1> studentList = new List<StudentGrid1>();
             try
             {
                 conn1.Open();                
@@ -401,16 +404,11 @@ namespace AchieversCPS
                 {
                     while (reader.Read())
                     {
-                        Student student = new Student();
-                        student.StudentId =int.Parse( reader["studentId"].ToString());
-                        student.StudentName = reader["studentFirstName"].ToString() +" " + reader["studentLastName"].ToString();
-                        student.ProgramName=reader["programName"].ToString();
-                        student.StudentEmail = reader["uhclEmail"].ToString();
-                        student.semester = reader["semester"].ToString();
-                        student.StartYear = int.Parse( reader["startYear"].ToString());
-                        student.UserName = reader["userName"].ToString();
+                         StudentGrid1 student = new StudentGrid1();
+                        student.studentId =int.Parse( reader["studentId"].ToString());
+                        student.studentName = reader["Student Name"].ToString();
+                        student.deptName=reader["programName"].ToString();
                         student.degreeType = reader["degreetype"].ToString();
-                        student.FacultyAdvisorId = int.Parse( reader["facultyAdvisorId"].ToString());
                         studentList.Add(student);
                     }
                 }
