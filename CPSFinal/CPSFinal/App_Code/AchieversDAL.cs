@@ -161,14 +161,19 @@ namespace AchieversCPS
                 
                 MyConnection.Open();
                 myCommand.Connection = MyConnection;
-                sql = "SELECT Subject + Catalog + Long Title AS CourseName FROM [Sheet1$] where Subject="+"'"+deptName+"'";
+                //sql = "SELECT Subject + Catalog + Long Title AS CourseName FROM [Sheet1$] where Subject="+"'"+deptName+"'";
+                sql = "SELECT [Subject] +' '+ [Catalog] +' ' +[Long Title] AS [Course] FROM [Sheet1$] where Subject='"+deptName+"'";
+
                 myCommand.CommandText = sql;
                 OleDbDataReader reader = myCommand.ExecuteReader();
+                //SqlDataAdapter da = new SqlDataAdapter();
+                //DataSet ds=new DataSet();
+                //da.Fill(ds, "[Sheet1$]");
                 if(reader.HasRows)
                 {
                     while(reader.Read())
                     {
-                        courses.Add(reader["CourseName"].ToString());
+                        courses.Add(reader["Course"].ToString());
                     }
                 }
                 MyConnection.Close();
