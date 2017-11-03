@@ -78,6 +78,7 @@ namespace AchieversCPS
         {
             Response.ContentType = "Application/xlsx";
             Response.AppendHeader("Content-Disposition", "attachment; filename=UHCL_EM_ACTIVE_COURSE_CATALOG_7133_"+DateTime.Now.Year+".xlsx");
+            //string path =  AppDomain.CurrentDomain.BaseDirectory + @"DefaultPDF's\UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx";
             Response.TransmitFile(Server.MapPath("~/DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx"));
             Response.End();
         }
@@ -91,9 +92,8 @@ namespace AchieversCPS
         {
             
             if (FileUpload1.FileName.EndsWith(".xlsx")) 
-            { 
-                string fileName= Path.GetFileName(FileUpload1.FileName);
-                File.Copy(fileName, "~/DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133_" + DateTime.Now.Year + ".xlsx", true); 
+            {
+                FileUpload1.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "DefaultPDF's\\" + FileUpload1.FileName);
             }
             else
             {
