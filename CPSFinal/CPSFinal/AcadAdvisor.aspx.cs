@@ -72,6 +72,7 @@ namespace AchieversCPS
             studentList = busL.GetAllStudentsBySemester(ddlDepts.SelectedItem.Text, txt_sem.Text,int.Parse(txt_year.Text));
             grdAllStudents.DataSource = studentList;
             grdAllStudents.DataBind();
+            Session["year"]=txt_year.Text;
         }
 
         protected void btnDownload_Click(object sender, EventArgs e)

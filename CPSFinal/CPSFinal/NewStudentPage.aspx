@@ -29,12 +29,7 @@
     <link href="https://fonts.googleapis.com/css?family=Alegreya:400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet" type="text/css" />
     <!--Font Awesome-->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <style type="text/css">
-        .auto-style2 {
-            width: 189px;
-        }
-    </style>
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -129,24 +124,20 @@
 
             </asp:Panel>
             <asp:Panel ID="pnlFoundation" runat="server">
-                <asp:DropDownList ID="ddl" runat="server"></asp:DropDownList>
-                <asp:FormView ID="fvFoundation" runat="server">
-                    <ItemTemplate>
-                        <table>
-                            <tr>
-                                <td>
-                                    <asp:CheckBox ID="CheckBox1" runat="server" />
-                                </td>
-                                <td>
-                                    
-                                    <asp:Label ID="Label6" runat="server" Text='<%# Eval("CourseRubric") %>'></asp:Label>
-                                    <asp:Label ID="Label7" runat="server" Text='<%# Eval("CourseNumber") %>'></asp:Label>
-                                    <asp:Label ID="Label8" runat="server" Text='<%# Eval("CourseName") %>'></asp:Label>
-                                </td>
-                            </tr>
-                        </table>
-                    </ItemTemplate>
-                </asp:FormView>
+                <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+                    
+                    <Columns>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        
+                    </Columns>
+                </asp:GridView>
+                
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+                
             </asp:Panel>
         </div>
         <footer>

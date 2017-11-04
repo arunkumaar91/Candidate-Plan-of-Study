@@ -7,7 +7,7 @@ namespace AchieversCPS
 {
     public class StudentCPS
     {
-        public string StudentId { get; set; }
+        public int StudentId { get; set; }
         public string StudentName { get; set; }
 
         public int facultyAdvisorId { get; set; }

@@ -9,8 +9,8 @@ using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
-//using Excel = Microsoft.Office.Interop.Excel;
 using System.Data.OleDb;
+
 
 
 namespace AchieversCPS
@@ -19,7 +19,7 @@ namespace AchieversCPS
 
     public class AchieversDAL
     {
-
+        
         private string Encrypt(string clearText)
         {
             string EncryptionKey = "MAKV2SPBNI99212";
@@ -67,7 +67,7 @@ namespace AchieversCPS
         List<Users> allUsers = new List<Users>();
         SqlConnection conn1 = new SqlConnection(@"Data Source=dcm.uhcl.edu;Initial Catalog=c432016sp01hemania;User ID=hemania;Password=1456068");
         SqlConnection conn2 = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='C:\Users\alira\Documents\Visual Studio 2013\Projects\CPSFinal\CPSFinal\App_Data\CourseCatalog.mdf';Integrated Security=True");
-        OleDbConnection MyConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\alira\Documents\Visual Studio 2013\Projects\CPSFinal\CPSFinal\DefaultPDF's\UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx;Extended Properties='Excel 8.0;HDR=Yes'");
+        OleDbConnection MyConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+AppDomain.CurrentDomain.BaseDirectory + "DefaultPDF's\\"+"UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx;Extended Properties='Excel 8.0;HDR=Yes'");
         public List<Users> GetAllUsers(string usernumber, string password)
         {
             try
@@ -150,9 +150,9 @@ namespace AchieversCPS
         }
 
         
-        public List<string> GetAllCourses(string deptName) 
+        public List<CourseClass> GetAllCourses(string deptName) 
         { 
-            List<String> courses = new List<string>();
+            List<CourseClass> courses = new List<CourseClass>();
             try
             {
                 
@@ -161,19 +161,22 @@ namespace AchieversCPS
                 
                 MyConnection.Open();
                 myCommand.Connection = MyConnection;
-                //sql = "SELECT Subject + Catalog + Long Title AS CourseName FROM [Sheet1$] where Subject="+"'"+deptName+"'";
-                sql = "SELECT [Subject] +' '+ [Catalog] +' ' +[Long Title] AS [Course] FROM [Sheet1$] where Subject='"+deptName+"'";
+                sql = "SELECT [Subject],[Catalog],[Long Title],[Min Units] FROM [Sheet1$] where "+deptName+"='FOUN'";
 
                 myCommand.CommandText = sql;
                 OleDbDataReader reader = myCommand.ExecuteReader();
-                //SqlDataAdapter da = new SqlDataAdapter();
-                //DataSet ds=new DataSet();
-                //da.Fill(ds, "[Sheet1$]");
+                
                 if(reader.HasRows)
                 {
                     while(reader.Read())
                     {
-                        courses.Add(reader["Course"].ToString());
+                        CourseClass cClass = new CourseClass();
+                        cClass.courseRubric=reader["Subject"].ToString();
+                        cClass.courseNumber =int.Parse(reader["Catalog"].ToString());
+                        cClass.className = reader["Long Title"].ToString();
+                        cClass.units = int.Parse(reader["Min Units"].ToString());
+                        courses.Add(cClass);
+
                     }
                 }
                 MyConnection.Close();
@@ -231,80 +234,102 @@ namespace AchieversCPS
             return depts;
         }
 
-        public List<CPSClass> GetAllMandatoryCoursesById(int studentId,string deptName)
+        public List<CourseClass> GetAllMandatoryCoursesByDept(string deptName)
         {
-            List<CPSClass> mandatoryClasses = new List<CPSClass>();
+            List<CourseClass> mandatoryClasses = new List<CourseClass>();
+            
             try
             {
-                conn1.Open();
-                conn2.Open();
-                SqlCommand selectCommand = new SqlCommand("dbo.GetAllMandatoryCourses", conn1);
-                selectCommand.CommandType = CommandType.StoredProcedure;
-                selectCommand.Parameters.AddWithValue("@ipvDeptName", deptName);
-                selectCommand.Parameters.AddWithValue("@ipvStudentId", studentId);
-                SqlDataReader reader = selectCommand.ExecuteReader();
+
+                OleDbCommand myCommand = new OleDbCommand();
+                string sql = null;
+
+                MyConnection.Open();
+                myCommand.Connection = MyConnection;
+                //sql = "SELECT Subject + Catalog + Long Title AS CourseName FROM [Sheet1$] where Subject="+"'"+deptName+"'";
+                sql = "SELECT [Subject],[Catalog],[Long Title],[Min Units] FROM [Sheet1$] where " + deptName + "='CORE'";
+
+                myCommand.CommandText = sql;
+                OleDbDataReader reader = myCommand.ExecuteReader();
+                
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        CPSClass mandatedClass = new CPSClass();
-                        mandatedClass.Grade=reader["grade"].ToString();
-                        mandatedClass.courseRubric=reader["courseRubric"].ToString();
-                        mandatedClass.courseNumber=reader["courseNumber"].ToString();
-                        mandatedClass.className=reader["className"].ToString();
-                        mandatedClass.units=(int)reader["credits"];
-                        mandatedClass.Term=reader["Term"].ToString();
-                        mandatoryClasses.Add(mandatedClass);
+                        CourseClass cClass = new CourseClass();
+                        cClass.courseRubric = reader["Subject"].ToString();
+                        cClass.courseNumber =int.Parse( reader["Catalog"].ToString());
+                        cClass.className = reader["Long Title"].ToString();
+                        cClass.units =int.Parse( reader["Min Units"].ToString());
+                        mandatoryClasses.Add(cClass);
+
                     }
                 }
+                MyConnection.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
             finally
             {
-                if (conn1.State == ConnectionState.Open || conn2.State==ConnectionState.Open)
+                if (MyConnection.State == ConnectionState.Open)
                 {
-                    conn1.Close();
-                    conn2.Close();
+                    MyConnection.Close();
                 }
             }
             return mandatoryClasses;
         }
 
-        
-        internal bool ScheduleAppointment(int Id,string Name,string appointmentDate,string facultyAdvisor)
+        public List<CourseClass> GetAllElectiveCoursesByDept(string deptName)
         {
-            bool isScheduled = false;
-            try{
-                conn1.Open();
-                SqlCommand insertCommand = new SqlCommand("uspAddAppointment", conn1);
-                insertCommand.CommandType = CommandType.StoredProcedure;
-                insertCommand.Parameters.AddWithValue("@ipvStudentId", Id);
-                insertCommand.Parameters.AddWithValue("@ipvStudentName", Name);
-                insertCommand.Parameters.AddWithValue("@ipvApptDate",appointmentDate);
-                insertCommand.Parameters.AddWithValue("@ipvAdvisor", facultyAdvisor);
-                int isAdded=insertCommand.ExecuteNonQuery();
+            List<CourseClass> electiveClasses = new List<CourseClass>();
 
-                if(isAdded==1)
+            try
+            {
+
+                OleDbCommand myCommand = new OleDbCommand();
+                string sql = null;
+
+                MyConnection.Open();
+                myCommand.Connection = MyConnection;
+                //sql = "SELECT Subject + Catalog + Long Title AS CourseName FROM [Sheet1$] where Subject="+"'"+deptName+"'";
+                sql = "SELECT [Subject],[Catalog],[Long Title],[Min Units] FROM [Sheet1$] where " + deptName + "='ELEC'";
+
+                myCommand.CommandText = sql;
+                OleDbDataReader reader = myCommand.ExecuteReader();
+
+                if (reader.HasRows)
                 {
-                    isScheduled = true;
+                    while (reader.Read())
+                    {
+                        CourseClass cClass = new CourseClass();
+                        cClass.courseRubric = reader["Subject"].ToString();
+                        cClass.courseNumber = int.Parse(reader["Catalog"].ToString());
+                        cClass.className = reader["Long Title"].ToString();
+                        cClass.units = int.Parse(reader["Min Units"].ToString());
+                        electiveClasses.Add(cClass);
+
+                    }
                 }
+                MyConnection.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
             finally
             {
-                if(conn1.State==ConnectionState.Open)
+                if (MyConnection.State == ConnectionState.Open)
                 {
-                    conn1.Close();
+                    MyConnection.Close();
                 }
             }
-            return isScheduled;
+            return electiveClasses;
         }
+
+        
+        
 
         internal Dictionary<int, string> GetAllFaculties()
         {
@@ -385,48 +410,7 @@ namespace AchieversCPS
             return isAdded;
         }
 
-       
-
-        internal List<CPSClass> GetAllMandatoryCourses(string p)
-        {
-            List<CPSClass> mandatoryClasses = new List<CPSClass>();
-            try
-            {
-                conn1.Open();
-                conn2.Open();
-                SqlCommand selectCommand = new SqlCommand("dbo.GetAllMandatoryCoursesByDept", conn1);
-                selectCommand.CommandType = CommandType.StoredProcedure;
-                selectCommand.Parameters.AddWithValue("@ipvDeptName", p);
-                SqlDataReader reader = selectCommand.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        CPSClass mandatedClass = new CPSClass();
-                        mandatedClass.Grade = reader["grade"].ToString();
-                        mandatedClass.courseRubric = reader["courseRubric"].ToString();
-                        mandatedClass.courseNumber = reader["courseNumber"].ToString();
-                        mandatedClass.className = reader["className"].ToString();
-                        mandatedClass.units = (int)reader["credits"];
-                        mandatedClass.Term = reader["Term"].ToString();
-                        mandatoryClasses.Add(mandatedClass);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (conn1.State == ConnectionState.Open || conn2.State == ConnectionState.Open)
-                {
-                    conn1.Close();
-                    conn2.Close();
-                }
-            }
-            return mandatoryClasses;
-        }
+              
 
         internal List<StudentGrid1> GetAllStudentsBySemester(string p1,string sem, int p2)
         {

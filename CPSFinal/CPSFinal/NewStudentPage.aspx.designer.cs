@@ -103,21 +103,21 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.Panel pnlFoundation;
         
         /// <summary>
-        /// ddl control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// fvFoundation control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView fvFoundation;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

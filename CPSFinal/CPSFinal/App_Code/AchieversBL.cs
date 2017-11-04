@@ -25,19 +25,14 @@ namespace AchieversCPS
             student = dal.GetStudent(userId);
             return student;
         }
-        public List<CPSClass> getMandatoryClasses(int studentId,string dept)
+        public List<CourseClass> getMandatoryClasses(int studentId,string dept)
         {
-            List<CPSClass> mandatedClasses = new List<CPSClass>();
-            mandatedClasses = dal.GetAllMandatoryCoursesById(studentId, dept);
+            List<CourseClass> mandatedClasses = new List<CourseClass>();
+            mandatedClasses = dal.GetAllMandatoryCoursesByDept(dept);
             return mandatedClasses;
         }
 
-        internal bool ScheduleAppoinment(int Id,string studentName,string appointmentDate,string advisorId)
-        {
-            bool isScheduled = false;
-            isScheduled = dal.ScheduleAppointment(Id,studentName,appointmentDate,advisorId);
-            return isScheduled;
-        }
+        
 
         internal Dictionary<int, string> GetAllFaculties()
         {
@@ -52,10 +47,10 @@ namespace AchieversCPS
             return isAdded;
         }
 
-        internal List<CPSClass> GetAllMandatoryClasses(string p)
+        internal List<CourseClass> GetAllMandatoryClasses(string p)
         {
-            List<CPSClass> mandatedClasses = new List<CPSClass>();
-            mandatedClasses = dal.GetAllMandatoryCourses(p);
+            List<CourseClass> mandatedClasses = new List<CourseClass>();
+            mandatedClasses = dal.GetAllMandatoryCoursesByDept(p);
             return mandatedClasses;
         }
 
