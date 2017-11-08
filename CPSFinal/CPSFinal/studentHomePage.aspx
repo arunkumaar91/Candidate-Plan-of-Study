@@ -12,7 +12,7 @@
     <title>UHCL - SCE Candidate Plan of Study</title>
     <!-- Custom CSS -->
     <link href="css/studentpage.css" rel="stylesheet" />
-    <link href="css/studentpagefooter.css" rel="stylesheet" />
+    <link href="css/StudentPageFooter1.css" rel="stylesheet" />
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
@@ -77,8 +77,6 @@
             <div class="menubuttons" style="float: left">
                 <asp:Button ID="initialCPS" runat="server" Text="View Initial CPS" CssClass="btn btn-secondary btn-lg" OnClick="initialCPS_Click1" /><br />
                 <br />
-                <asp:Button ID="schApp" runat="server" Text="Schedule Appointment" CssClass="btn btn-secondary btn-lg" OnClick="schApp_Click" /><br />
-                <br />
                 <asp:Button ID="retCPS" runat="server" Text="View or Print CPS" CssClass="btn btn-secondary btn-lg" OnClick="retCPS_Click" /><br />
                 <br />
                 <asp:Button ID="cpsChng" runat="server" Text="CPS Change Form" CssClass="btn btn-secondary btn-lg" OnClick="cpsChng_Click" />
@@ -86,61 +84,6 @@
             <div id="ClassPanel">
                 <asp:Panel ID="initialCPSPanel" Visible="false" runat="server" CssClass="panel">
                     <object data="DefaultPDF's/pdf-sample.pdf" type="application/pdf" height="600" width="800"></object>
-                </asp:Panel>
-                <asp:Panel ID="scheduleappntPanel" Visible="false" runat="server" CssClass="panel scd">
-                    <table>
-                        <tr>
-                            <td>
-                                <asp:Label ID="lblAdvisor" runat="server" Text="Your Faculty Advisor:"></asp:Label>
-                                <asp:Label ID="lblAdvisorName" runat="server" Text="Label"></asp:Label></td>
-                            <asp:Label ID="lblMessage" Visible="false" runat="server" Text="Label"></asp:Label>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="lblDateSchedule" runat="server" Text="Schedule Date:"></asp:Label></td>
-                            <td>
-                                <asp:TextBox ID="txtCalender" runat="server" CssClass="cale"></asp:TextBox>
-                                <asp:CalendarExtender ID="CalendarExtender1" TargetControlID="txtCalender" runat="server" Enabled="true" ClearTime="True"></asp:CalendarExtender>
-                            </td>
-                            <td>&nbsp;
-                            </td>
-                            <td>
-                                <asp:DropDownList ID="ddlhrs" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlhrs_SelectedIndexChanged" OnTextChanged="ddlhrs_TextChanged">
-                                </asp:DropDownList>
-                            </td>
-                            <td>&nbsp;
-                            </td>
-                            <td>
-                                <asp:DropDownList ID="ddlmins" runat="server" AutoPostBack="True">
-                                </asp:DropDownList>
-                            </td>
-                            <td>&nbsp;
-                            </td>
-                            <td>
-                                <asp:Label ID="lblampm" runat="server" Text="AM"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                            </td>
-                        </tr>
-                    </table>
-                    <asp:Button ID="btnScheduleAppt" runat="server" Text="Schedule Appointment" CssClass="btn btn-secondary btn-lg sched" OnClick="ScheduleAppoint_Click" />
                 </asp:Panel>
                 <asp:Panel ID="viewPrintCPSPanel" Visible="false" runat="server">
                     <table style="align-content: center; text-align: center; align-self: auto">
@@ -220,7 +163,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="js/bootstrap.min.js">
         </script>
-
     </form>
 </body>
 </html>

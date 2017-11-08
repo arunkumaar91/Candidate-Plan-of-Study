@@ -25,6 +25,10 @@ body {
     padding-right: 7em;
 }
 
+.wrapper {
+    min-height: 100%;
+    position: relative;
+}
 
 /* navbar */
 

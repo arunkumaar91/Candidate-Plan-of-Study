@@ -66,7 +66,7 @@ namespace AchieversCPS
 
         List<Users> allUsers = new List<Users>();
         SqlConnection conn1 = new SqlConnection(@"Data Source=dcm.uhcl.edu;Initial Catalog=c432016sp01hemania;User ID=hemania;Password=1456068");
-        SqlConnection conn2 = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='C:\Users\alira\Documents\Visual Studio 2013\Projects\CPSFinal\CPSFinal\App_Data\CourseCatalog.mdf';Integrated Security=True");
+        SqlConnection conn2 = new SqlConnection(@"Data Source=dcm.uhcl.edu;Initial Catalog=capf17gswen2;Persist Security Info=True;User ID=capf17gswen2;Password=3827039");
         OleDbConnection MyConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+AppDomain.CurrentDomain.BaseDirectory + "DefaultPDF's\\"+"UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx;Extended Properties='Excel 8.0;HDR=Yes'");
         public List<Users> GetAllUsers(string usernumber, string password)
         {
@@ -76,8 +76,9 @@ namespace AchieversCPS
                 
                 SqlCommand selectCommand = new SqlCommand("dbo.uspGetUser",conn1);
                 selectCommand.CommandType = CommandType.StoredProcedure;
+                string encryptedPassword = Encrypt(password);
                 selectCommand.Parameters.AddWithValue("@ipvUserId", usernumber);
-                selectCommand.Parameters.AddWithValue("@ipvPass", password);
+                selectCommand.Parameters.AddWithValue("@ipvPass", encryptedPassword);
                 SqlDataReader reader = selectCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -412,7 +413,7 @@ namespace AchieversCPS
 
               
 
-        internal List<StudentGrid1> GetAllStudentsBySemester(string p1,string sem, int p2)
+        internal List<StudentGrid1> GetAllStudentsBySemester(string sem, int p2)
         {
             List<StudentGrid1> studentList = new List<StudentGrid1>();
             try
@@ -420,7 +421,6 @@ namespace AchieversCPS
                 conn1.Open();                
                 SqlCommand selectCommand = new SqlCommand("dbo.GetAllStudentsBySemnDept", conn1);
                 selectCommand.CommandType = CommandType.StoredProcedure;
-                selectCommand.Parameters.AddWithValue("@ipvDeptName", p1);
                 selectCommand.Parameters.AddWithValue("@ipvSemester",sem);
                 selectCommand.Parameters.AddWithValue("@ipvYear", p2);
                 SqlDataReader reader = selectCommand.ExecuteReader();
@@ -450,6 +450,50 @@ namespace AchieversCPS
                 }
             }
             return studentList;
+        }
+
+        internal int GenerateInitialCPS(List<StudentCPS> cpsList)
+        {
+            int count = 0;
+            try
+            {
+                conn2.Open();
+                foreach(StudentCPS cps in cpsList)
+                {
+                    SqlCommand insertCommand = new SqlCommand("uspAddCPS", conn2);
+                    insertCommand.CommandType = CommandType.StoredProcedure;
+                    insertCommand.Parameters.AddWithValue("@ipvStudentId", cps.StudentId);
+                    insertCommand.Parameters.AddWithValue("@ipvStudentName", cps.StudentName);
+                    insertCommand.Parameters.AddWithValue("@ipvFacId", cps.facultyAdvisorId);
+                    insertCommand.Parameters.AddWithValue("@ipvCourseRubric",cps.CourseRubric );
+                    insertCommand.Parameters.AddWithValue("@ipvCourseNumber", cps.CourseNumber);
+                    insertCommand.Parameters.AddWithValue("@ipvCourseName", cps.CourseName);
+                    insertCommand.Parameters.AddWithValue("@ipvUnits",cps.Units);
+                    insertCommand.Parameters.AddWithValue("@ipvGrades", cps.Grades);
+                    insertCommand.Parameters.AddWithValue("@ipvSemester", cps.Semester);
+                    insertCommand.Parameters.AddWithValue("@ipvYear", cps.Year);
+                    insertCommand.Parameters.AddWithValue("@ipvCourseType", cps.CourseType);
+                    int cnt = insertCommand.ExecuteNonQuery();
+                    if(cnt==1)
+                    {
+                        count++;
+                    }
+                    
+                }
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if(conn2.State==ConnectionState.Open)
+                {
+                    conn2.Close();
+                }
+            }           
+            return count;
         }
     }
 }

@@ -23,25 +23,11 @@ namespace AchieversCPS
             {
                 Users user = new Users();
                 user = (Users)(Session["user"]);
+                sgnName.Text = user.FullName;
             }
             AchieversDAL dal = new AchieversDAL();
-            ddlDepts.DataSource = dal.GetAllDept();
-            ddlDepts.DataBind();
-            if(DateTime.Now.Month<4)
-            {
-                txt_sem.Text = "Spring";
-                txt_year.Text = DateTime.Now.Year.ToString();
-            }
-            else if(DateTime.Now.Month>8)
-            {
-                txt_sem.Text = "Fall";
-                txt_year.Text = DateTime.Now.Year.ToString();
-            }
-            else
-            {
-                txt_sem.Text = "Summer";
-                txt_year.Text = DateTime.Now.Year.ToString();
-            }
+            
+           
             }
         }
         protected void sgnButton_Click(object sender, EventArgs e)
@@ -69,7 +55,7 @@ namespace AchieversCPS
         {
             AchieversBL busL = new AchieversBL();
             List<StudentGrid1> studentList =new List<StudentGrid1>();
-            studentList = busL.GetAllStudentsBySemester(ddlDepts.SelectedItem.Text, txt_sem.Text,int.Parse(txt_year.Text));
+            studentList = busL.GetAllStudentsBySemester( ddlSem.SelectedItem.Text,int.Parse(txt_year.Text));
             grdAllStudents.DataSource = studentList;
             grdAllStudents.DataBind();
             Session["year"]=txt_year.Text;
@@ -101,6 +87,11 @@ namespace AchieversCPS
                 Response.Write("Please upload excel file");
             }
             
+        }
+
+        protected void RangeValidator1_Init(object sender, EventArgs e)
+        {
+            ((RangeValidator)sender).MaximumValue = DateTime.Now.Year.ToString();
         }
     }
 }

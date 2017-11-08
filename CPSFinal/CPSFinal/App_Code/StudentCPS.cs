@@ -18,5 +18,6 @@ namespace AchieversCPS
         public string Grades { get; set; }
         public string Semester { get; set; }
         public int Year { get; set; }
+        public string CourseType { get; set; }
     }
 }

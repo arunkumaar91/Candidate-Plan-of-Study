@@ -85,15 +85,6 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.Panel generateformpanel;
         
         /// <summary>
-        /// lbl_deptName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_deptName;
-        
-        /// <summary>
         /// lbl_semester control.
         /// </summary>
         /// <remarks>
@@ -112,22 +103,13 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.Label lbl_year;
         
         /// <summary>
-        /// ddlDepts control.
+        /// ddlSem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDepts;
-        
-        /// <summary>
-        /// txt_sem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_sem;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSem;
         
         /// <summary>
         /// txt_year control.
@@ -137,6 +119,15 @@ namespace AchieversCPS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_year;
+        
+        /// <summary>
+        /// RangeValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator RangeValidator1;
         
         /// <summary>
         /// btn_viewStudentList control.

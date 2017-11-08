@@ -35,13 +35,17 @@ namespace AchieversCPS
                 Session["user"] = user;
                 Session["userRole"] = user.Role;
                 Session["userId"] = user.Userid;
-                if(user.Role=="student")
+                if(user.Role=="Student")
                 {
                     Response.Redirect("~\\studentHomePage.aspx");
                 }
-                else if(user.Role=="academic")
+                else if(user.Role=="Academic")
                 {
                     Response.Redirect("~\\AcadAdvisor.aspx");
+                }
+                else if(user.Role=="Faculty")
+                {
+                    Response.Redirect("~\\FacultyAdvisor.aspx");
                 }
             }
         }

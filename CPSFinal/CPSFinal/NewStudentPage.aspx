@@ -59,7 +59,7 @@
         <div class="heading">
             Welcome
             <asp:Label ID="sgnName" runat="server" Text="Name"></asp:Label>
-            <asp:Button ID="sgnButton" runat="server" Text="SignOut" CssClass="sgn"/>
+            <asp:Button ID="sgnButton" runat="server" Text="SignOut" CssClass="sgn" OnClick="sgnButton_Click"/>
         </div>
         <br />
         <br />
@@ -136,9 +136,44 @@
                     </Columns>
                 </asp:GridView>
                 
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+
                 
             </asp:Panel>
+
+            <asp:Panel ID="Panel2" runat="server">
+                <asp:GridView ID="GridView2" runat="server">
+                    
+                    <Columns>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:CheckBox ID="CheckBox2" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        
+                    </Columns>
+                </asp:GridView>
+                
+
+                
+            </asp:Panel>
+
+            <asp:Panel ID="Panel3" runat="server">
+                <asp:GridView ID="GridView3" runat="server">
+                    
+                    <Columns>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:CheckBox ID="CheckBox3" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        
+                    </Columns>
+                </asp:GridView>
+                
+
+                
+            </asp:Panel>
+                            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
         </div>
         <footer>
             <!--Contact me-->

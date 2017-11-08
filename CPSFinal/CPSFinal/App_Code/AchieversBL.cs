@@ -54,10 +54,16 @@ namespace AchieversCPS
             return mandatedClasses;
         }
 
-        internal List<StudentGrid1> GetAllStudentsBySemester(string deptName,string p1, int p2)
+        internal List<StudentGrid1> GetAllStudentsBySemester(string p1, int p2)
         {
-            List<StudentGrid1> studentList = dal.GetAllStudentsBySemester(deptName, p1, p2);
+            List<StudentGrid1> studentList = dal.GetAllStudentsBySemester( p1, p2);
             return studentList;
+        }
+
+        internal int GenerateInitialCPS(List<StudentCPS> cpsList)
+        {
+            int count=dal.GenerateInitialCPS(cpsList);
+            return count;
         }
     }
 }

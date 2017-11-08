@@ -85,9 +85,6 @@
             <asp:Panel ID="generateformpanel" Visible="false" runat="server" CssClass="panel gen">
                 <table>
                     <tr>
-                        <td class="auto-style2">
-                            <asp:Label ID="lbl_deptName" runat="server" Text="Department Name" CssClass="lbl_1"></asp:Label>
-                        </td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:Label ID="lbl_semester" runat="server" Text="Semester"></asp:Label>
                         </td>
@@ -96,15 +93,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style2">
-                            <asp:DropDownList ID="ddlDepts" runat="server"></asp:DropDownList>
-                        </td>
-
                         <td>&nbsp;&nbsp;&nbsp;
-                            <asp:TextBox ID="txt_sem" runat="server"></asp:TextBox>
+                            <asp:DropDownList ID="ddlSem" runat="server">
+                                <asp:ListItem>Spring</asp:ListItem>
+                                <asp:ListItem>Summer</asp:ListItem>
+                                <asp:ListItem>Fall</asp:ListItem>
+                            </asp:DropDownList>
+                            
                         </td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:TextBox ID="txt_year" runat="server"></asp:TextBox>
+                            <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txt_year" MinimumValue="1965"  ErrorMessage="Enter a year between 1965 and today" Display="Dynamic" OnInit="RangeValidator1_Init">*</asp:RangeValidator>
                         </td>
                         <td>&nbsp;<asp:Button ID="btn_viewStudentList" runat="server" CssClass="viewbtn" Text="View Student List" OnClick="btn_viewStudentList_Click" />
                         </td>
