@@ -83,7 +83,8 @@
             </div>
             <div id="ClassPanel">
                 <asp:Panel ID="initialCPSPanel" Visible="false" runat="server" CssClass="panel">
-                    <object data="DefaultPDF's/pdf-sample.pdf" type="application/pdf" height="600" width="800"></object>
+                    <iframe src="<%=this.Path %>" height="700" width="700"></iframe>
+
                 </asp:Panel>
                 <asp:Panel ID="viewPrintCPSPanel" Visible="false" runat="server">
                     <table style="align-content: center; text-align: center; align-self: auto">

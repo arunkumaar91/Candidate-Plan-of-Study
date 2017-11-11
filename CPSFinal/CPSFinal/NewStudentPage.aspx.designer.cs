@@ -112,13 +112,13 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// Panel2 control.
+        /// pnlCore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.Panel pnlCore;
         
         /// <summary>
         /// GridView2 control.
@@ -130,13 +130,13 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
-        /// Panel3 control.
+        /// pnlElective control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel3;
+        protected global::System.Web.UI.WebControls.Panel pnlElective;
         
         /// <summary>
         /// GridView3 control.

@@ -114,6 +114,7 @@
                         ErrorMessage="Please enter password." ControlToValidate="Password"
                         Display="Dynamic" SetFocusOnError="True" CssClass="alert-danger" ValidationGroup="alertGrp" />
                     <br />
+                    <asp:HyperLink ID="hplPassword" NavigateUrl="~/ForgotPassword.aspx" runat="server">Forgot Password Click here!!</asp:HyperLink>
                     <br />
                 </div>
                 <div class="signIn">

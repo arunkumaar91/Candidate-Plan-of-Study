@@ -65,5 +65,34 @@ namespace AchieversCPS
             int count=dal.GenerateInitialCPS(cpsList);
             return count;
         }
+
+        public Users GetUserById(string userId)
+        {
+            Users user = new Users();
+            List<Users> users = dal.GetUserById(userId);
+            if(users.Count==1)
+            {
+                user= users[0];
+            }
+            return user;
+        }
+
+        internal List<CourseClass> GetCoreCourses(int stdId)
+        {
+            List<CourseClass> coreCourses = dal.GetCoreCourses(stdId);
+            return coreCourses;
+        }
+
+        internal List<CourseClass> GetFoundationCourses(int stdId)
+        {
+            List<CourseClass> foundationCourses = dal.GetFoundationCourses(stdId);
+            return foundationCourses;
+        }
+
+        internal List<CourseClass> GetElectiveCourses(int stdId)
+        {
+            List<CourseClass> electiveCourses = dal.GetElectiveCourses(stdId);
+            return electiveCourses;
+        }
     }
 }

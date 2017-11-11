@@ -29,7 +29,7 @@
     <link href="https://fonts.googleapis.com/css?family=Alegreya:400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet" type="text/css" />
     <!--Font Awesome-->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    </head>
+</head>
 <body>
     <form id="form1" runat="server">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -59,7 +59,7 @@
         <div class="heading">
             Welcome
             <asp:Label ID="sgnName" runat="server" Text="Name"></asp:Label>
-            <asp:Button ID="sgnButton" runat="server" Text="SignOut" CssClass="sgn" OnClick="sgnButton_Click"/>
+            <asp:Button ID="sgnButton" runat="server" Text="SignOut" CssClass="sgn" OnClick="sgnButton_Click" />
         </div>
         <br />
         <br />
@@ -125,36 +125,48 @@
             </asp:Panel>
             <asp:Panel ID="pnlFoundation" runat="server">
                 <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-                    
+
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:CheckBox ID="CheckBox1" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        
+
                     </Columns>
                 </asp:GridView>
-                
 
-                
+
+
             </asp:Panel>
 
-            <asp:Panel ID="Panel2" runat="server">
+            <asp:Panel ID="pnlCore" runat="server">
                 <asp:GridView ID="GridView2" runat="server">
-                    
+
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:CheckBox ID="CheckBox2" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        
+
                     </Columns>
                 </asp:GridView>
-                
+            </asp:Panel>
+            <asp:Panel ID="pnlElective" runat="server">
+                <asp:GridView ID="GridView3" runat="server">
+
+                    <Columns>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:CheckBox ID="CheckBox3" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                    </Columns>
+                </asp:GridView>
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
-                
+
             </asp:Panel>
         </div>
         <footer>

@@ -16,6 +16,7 @@ namespace AchieversCPS
 {
     public partial class studentHomePage : System.Web.UI.Page
     {
+        public string Path;
         AchieversBL bizl = new AchieversBL();
         Student std = new Student();
         
@@ -26,7 +27,7 @@ namespace AchieversCPS
                 Session["user"] = null;
                 Response.Redirect("Login.aspx");
             }
-            else if(Session["userRole"].ToString()=="student")
+            else if(Session["userRole"].ToString()=="Student")
             {
                 Users user = new Users();
                 user = (Users)(Session["user"]);
@@ -42,16 +43,20 @@ namespace AchieversCPS
                     }
                     sgnName.Text = std.StudentName;
                     lblName.Text = std.StudentName;
+
                 }
 
             }
         }
 
-        private void BindData(int stdId, string pgmName)
+        private void BindData(int stdId)
         {
-            grdCoreCourses.DataSource = bizl.getMandatoryClasses(stdId, pgmName);
-            //grdCourses.Columns[0].ItemStyle.
+            grdCoreCourses.DataSource = bizl.GetCoreCourses(stdId);
+            grdfdnCourses.DataSource = bizl.GetFoundationCourses(stdId);
+            grdElectiveCourses.DataSource = bizl.GetElectiveCourses(stdId);            
             grdCoreCourses.DataBind();
+            grdElectiveCourses.DataBind();
+            grdfdnCourses.DataBind();
         }
 
         protected void initialCPS_Click1(object sender, EventArgs e)
@@ -59,8 +64,14 @@ namespace AchieversCPS
             initialCPSPanel.Visible = true;
             CPSChangeFormPanel.Visible = false;
             viewPrintCPSPanel.Visible = false;
-            
-            
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "DefaultPDF's\\" + std.ProgramName + ".pdf"))
+            { 
+                this.Path = @"\DefaultPDF's\"+std.ProgramName+".pdf";
+            }
+            else
+            {
+                this.Path = @"\DefaultPDF's\pdf-sample.pdf";
+            }
         }
 
         protected void sgnButton_Click(object sender, EventArgs e)
@@ -78,8 +89,9 @@ namespace AchieversCPS
             initialCPSPanel.Visible = false;
             CPSChangeFormPanel.Visible = false;
             viewPrintCPSPanel.Visible = true;
-            
-            BindData(std.StudentId, std.ProgramName);
+            lblAdmitted.Text = std.StartYear.ToString();
+            lblSemester.Text = std.semester;
+            BindData(std.StudentId);
         }
 
         protected void btnPrint_Click(object sender, EventArgs e)
@@ -90,7 +102,7 @@ namespace AchieversCPS
                 {
                     //To Export all pages
                     //GridView1.AllowPaging = false;
-                    this.BindData(std.StudentId, std.ProgramName);
+                    this.BindData(std.StudentId);
                     viewPrintCPSPanel.RenderControl(hw);
                     StringReader sr = new StringReader(sw.ToString());
                     Document pdfDoc = new Document(PageSize.A2, 10f, 10f, 10f, 0f);
@@ -107,38 +119,6 @@ namespace AchieversCPS
                     Response.End();
                 }
             }
-            //print();
-            //string attachment = "attachment; filename=ApplicationForm.pdf";
-
-            //Response.ClearContent();
-
-            //Response.AddHeader("content-disposition", attachment);
-
-            //Response.ContentType = "application/pdf";
-
-            //StringWriter stw = new StringWriter();
-
-            //HtmlTextWriter htextw = new HtmlTextWriter(stw);
-
-            //viewPrintCPSPanel.RenderControl(htextw);
-
-            //Document document = new Document();
-
-            //PdfWriter.GetInstance(document, Response.OutputStream);
-
-            //document.Open();
-
-            //StringReader str = new StringReader(stw.ToString());
-
-            //HTMLWorker htmlworker = new HTMLWorker(document);
-
-            //htmlworker.Parse(str);
-
-            //document.Close();
-
-            //Response.Write(document);
-
-            //Response.End();
         }
 
         public override void VerifyRenderingInServerForm(Control control)

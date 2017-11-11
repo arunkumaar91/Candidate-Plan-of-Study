@@ -11,6 +11,7 @@ namespace AchieversCPS
         public string courseRubric { get; set; }
         public string className { get; set; }
         public int units { get; set; }
-
+        public string Grades { get; set; }
+        public string Semester { get; set; }
     }
 }

@@ -495,5 +495,166 @@ namespace AchieversCPS
             }           
             return count;
         }
+
+        public List<Users> GetUserById(string userId)
+        {
+            List<Users> users = new List<Users>();
+            try
+            {
+                conn1.Open();
+
+                SqlCommand selectCommand = new SqlCommand("dbo.uspGetUserById", conn1);
+                selectCommand.CommandType = CommandType.StoredProcedure;
+                selectCommand.Parameters.AddWithValue("@ipvUserId", userId);
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Users user = new Users();
+                        user.UserName = reader["userName"].ToString();
+                        user.Password = Decrypt(reader["pass"].ToString());
+                        user.Role = reader["roleOfperson"].ToString();
+                        users.Add(user);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conn1.State == ConnectionState.Open)
+                {
+                    conn1.Close();
+                }
+            }
+            return users;
+        }
+
+        internal List<CourseClass> GetElectiveCourses(int stdId)
+        {
+            List<CourseClass> electiveCourses = new List<CourseClass>();
+            try
+            {
+                conn2.Open();
+
+                SqlCommand selectCommand = new SqlCommand("dbo.uspGetElectiveCourses", conn2);
+                selectCommand.CommandType = CommandType.StoredProcedure;
+                selectCommand.Parameters.AddWithValue("@ipvStudentId", stdId);
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        CourseClass cClass = new CourseClass();
+                        cClass.Semester=reader["Semester"].ToString();
+                        cClass.courseNumber=int.Parse( reader["CourseNumber"].ToString());
+                        cClass.courseRubric=reader["CourseRubric"].ToString();
+                        cClass.className=reader["CourseName"].ToString();
+                        cClass.Grades = reader["Grades"].ToString();
+                        cClass.units = int.Parse( reader["Units"].ToString());
+                        electiveCourses.Add(cClass);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conn2.State == ConnectionState.Open)
+                {
+                    conn2.Close();
+                }
+            }
+            return electiveCourses;
+        }
+
+        internal List<CourseClass> GetFoundationCourses(int stdId)
+        {
+            List<CourseClass> foundationCourses = new List<CourseClass>();
+            try
+            {
+                conn2.Open();
+
+                SqlCommand selectCommand = new SqlCommand("dbo.uspGetFoundationCourses", conn2);
+                selectCommand.CommandType = CommandType.StoredProcedure;
+                selectCommand.Parameters.AddWithValue("@ipvStudentId", stdId);
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        CourseClass fClass = new CourseClass();
+                        fClass.Semester = reader["Semester"].ToString();
+                        fClass.courseNumber = int.Parse(reader["CourseNumber"].ToString());
+                        fClass.courseRubric = reader["CourseRubric"].ToString();
+                        fClass.className = reader["CourseName"].ToString();
+                        fClass.Grades = reader["Grades"].ToString();
+                        fClass.units = int.Parse(reader["Units"].ToString());
+                        foundationCourses.Add(fClass);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conn2.State == ConnectionState.Open)
+                {
+                    conn2.Close();
+                }
+            }
+            return foundationCourses;
+        }
+
+        internal List<CourseClass> GetCoreCourses(int stdId)
+        {
+            List<CourseClass> coreCourses = new List<CourseClass>();
+            try
+            {
+                conn2.Open();
+
+                SqlCommand selectCommand = new SqlCommand("dbo.uspGetCoreCourses", conn2);
+                selectCommand.CommandType = CommandType.StoredProcedure;
+                selectCommand.Parameters.AddWithValue("@ipvStudentId", stdId);
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        CourseClass cClass = new CourseClass();
+                        cClass.Semester = reader["Semester"].ToString();
+                        cClass.courseNumber = int.Parse(reader["CourseNumber"].ToString());
+                        cClass.courseRubric = reader["CourseRubric"].ToString();
+                        cClass.className = reader["CourseName"].ToString();
+                        cClass.Grades = reader["Grades"].ToString();
+                        cClass.units = int.Parse(reader["Units"].ToString());
+                        coreCourses.Add(cClass);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conn2.State == ConnectionState.Open)
+                {
+                    conn2.Close();
+                }
+            }
+            return coreCourses;
+        }
     }
 }

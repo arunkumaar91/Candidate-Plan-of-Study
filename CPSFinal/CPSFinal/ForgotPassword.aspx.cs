@@ -13,5 +13,13 @@ namespace AchieversCPS
         {
 
         }
+
+        protected void btnGetUser_Click(object sender, EventArgs e)
+        {
+            AchieversBL bl = new AchieversBL();
+            Users user= bl.GetUserById(txtUserId.Text);
+            lblUserName.Text = user.UserName;
+            lblPassword.Text = user.Password;
+        }
     }
 }
