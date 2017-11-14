@@ -319,6 +319,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="js\jquery-3.2.1.min.map" />
     <Content Include="js\jquery-3.2.1.slim.min.map" />
+    <None Include="Properties\PublishProfiles\CPSSystem.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
