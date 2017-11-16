@@ -1,6 +1,24 @@
-C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\bin\CPSFinal.dll.config
-C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\bin\CPSFinal.dll
-C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\bin\CPSFinal.pdb
-C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\obj\Debug\CPSFinal.dll
-C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\obj\Debug\CPSFinal.pdb
-C:\Users\alira\Source\Repos\Candidate_Plan_of_Study_Web_Application3\CPSFinal\CPSFinal\obj\Debug\CPSFinal.csprojResolveAssemblyReference.cache
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\obj\Debug\CPSFinal.csprojResolveAssemblyReference.cache
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\CPSFinal.dll.config
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\CPSFinal.dll
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\CPSFinal.pdb
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\System.Web.Optimization.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Antlr3.Runtime.pdb
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Newtonsoft.Json.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.AspNet.FriendlyUrls.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\EntityFramework.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\EntityFramework.SqlServer.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.AspNet.Identity.Core.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.Owin.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.Owin.Security.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.Owin.Security.Facebook.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.Owin.Security.Cookies.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.Owin.Security.Google.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.Owin.Security.Twitter.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\bin\Microsoft.Owin.Security.OAuth.xml
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\obj\Debug\CPSFinal.dll
+c:\users\alira\documents\visual studio 2013\Projects\CPSFinal\CPSFinal\obj\Debug\CPSFinal.pdb

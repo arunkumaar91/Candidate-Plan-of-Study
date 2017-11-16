@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -213,7 +214,6 @@
     <Content Include="bin\System.Web.Optimization.xml" />
     <Content Include="bin\System.Web.Providers.dll" />
     <Content Include="bin\WebGrease.dll" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -223,21 +223,19 @@
     <Content Include="Content\mdl-v1.1.2\material.min.css" />
     <Content Include="Content\mdl-v1.1.2\material.min.js" />
     <Content Include="Content\Site.css" />
-    <Content Include="css\acadadvfooter.css" />
-    <Content Include="css\acadadvisorpage.css" />
+    <Content Include="css\acadadvisorfooter2.css" />
+    <Content Include="css\acadadvisorpage3.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
-    <Content Include="css\foot.css" />
-    <Content Include="css\footindex.css" />
     <Content Include="css\jquery-3.2.1.min.js" />
-    <Content Include="css\loginfooter.css" />
-    <Content Include="css\main.css" />
+    <Content Include="css\loginfooter2.css" />
+    <Content Include="css\main1.css" />
+    <Content Include="css\NewStudentPage.css" />
     <Content Include="css\Site.css" />
-    <Content Include="css\studentHomePage.css" />
-    <Content Include="css\studentpage.css" />
-    <Content Include="css\studentpagefooter.css" />
+    <Content Include="css\studentpage3.css" />
+    <Content Include="css\studentpagefooter2.css" />
     <Content Include="Error.aspx" />
     <Content Include="FacultyAdvisor.aspx" />
     <Content Include="font-awesome\css\font-awesome.css" />
@@ -297,12 +295,22 @@
     <Content Include="font-awesome\scss\_rotated-flipped.scss" />
     <Content Include="font-awesome\scss\_stacked.scss" />
     <Content Include="font-awesome\scss\_variables.scss" />
-    <Content Include="DefaultPDF%27s\UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx" />
     <Content Include="css\bootstrap-theme.css.map" />
     <Content Include="css\bootstrap-theme.min.css.map" />
     <Content Include="css\bootstrap.css.map" />
     <Content Include="css\bootstrap.min.css.map" />
     <Content Include="bin\CPSFinal.dll.config" />
+    <Content Include="DefaultPDF%27s\BIOT.pdf" />
+    <Content Include="DefaultPDF%27s\CENG.pdf" />
+    <Content Include="DefaultPDF%27s\CINF.pdf" />
+    <Content Include="DefaultPDF%27s\cpschange-form.pdf" />
+    <Content Include="DefaultPDF%27s\CSCI.pdf" />
+    <Content Include="DefaultPDF%27s\EMGT.pdf" />
+    <Content Include="DefaultPDF%27s\SENG.pdf" />
+    <Content Include="DefaultPDF%27s\STAT.pdf" />
+    <Content Include="DefaultPDF%27s\SWEN.pdf" />
+    <Content Include="DefaultPDF%27s\UHCL_EM_ACTIVE_COURSE_CATALOG_7133_2017.xlsx" />
+    <Content Include="App_Data\pdf-sample.pdf" />
     <None Include="js\jquery-3.2.1.intellisense.js" />
     <Content Include="js\jquery-3.2.1.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
@@ -319,7 +327,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="js\jquery-3.2.1.min.map" />
     <Content Include="js\jquery-3.2.1.slim.min.map" />
-    <None Include="Properties\PublishProfiles\CPSSystem.pubxml" />
+    <None Include="Properties\PublishProfiles\CPS_Final.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -350,7 +358,6 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
@@ -424,21 +431,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Code\CourseClass.cs" />
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Code\EnrolledClasses.cs" />
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
@@ -521,9 +514,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

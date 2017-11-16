@@ -130,6 +130,15 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.Label lblAdmitted;
         
         /// <summary>
+        /// lblFoundation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFoundation;
+        
+        /// <summary>
         /// grdfdnCourses control.
         /// </summary>
         /// <remarks>
@@ -139,6 +148,15 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.GridView grdfdnCourses;
         
         /// <summary>
+        /// lblCore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCore;
+        
+        /// <summary>
         /// grdCoreCourses control.
         /// </summary>
         /// <remarks>
@@ -146,6 +164,15 @@ namespace AchieversCPS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdCoreCourses;
+        
+        /// <summary>
+        /// lblElective control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblElective;
         
         /// <summary>
         /// grdElectiveCourses control.

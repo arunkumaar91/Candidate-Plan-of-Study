@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -11,8 +14,27 @@ namespace AchieversCPS
     {
         AchieversBL business = new AchieversBL();
         List<Student> stu = new List<Student>();
-        int studentId = 0; 
-            
+        int studentId = 0;
+
+
+        private bool CheckIfFileExistsOnServer(string fileName)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(fileName);
+            //request.Method = WebRequestMethods.Ftp.GetFileSize;
+            bool exists = false;
+            try
+            {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                exists = true;
+            }
+            catch (WebException ex)
+            {
+                HttpWebResponse response = (HttpWebResponse)ex.Response;
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                    exists = false;
+            }
+            return exists;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             AchieversDAL dal = new AchieversDAL();
@@ -30,20 +52,39 @@ namespace AchieversCPS
                         fvStudents.DataSource = stu;
                         fvStudents.DataBind();
                         string deptName = stu[0].ProgramName;
+                        int Year = stu[0].StartYear;
+
+                        //string filePath = "http://dcm.uhcl.edu/capf17gswen2/DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133_"+Year+".xlsx";
+                        //bool exists = false;
+                        //HttpWebRequest request = (HttpWebRequest)System.Net.WebRequest.Create(filePath);
+                        //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        //exists = CheckIfFileExistsOnServer(filePath);
+                        
+                        if(File.Exists(AppDomain.CurrentDomain.BaseDirectory+@"DefaultPDF's\UHCL_EM_ACTIVE_COURSE_CATALOG_7133_"+Year + ".xlsx"))
+                        {
+                            ConfigurationManager.AppSettings["Year"] = Year.ToString();
+                        }
+                        else
+                        {
+                            ConfigurationManager.AppSettings["Year"] = DateTime.Now.Year.ToString();
+                        }
+                        //ConfigurationManager.AppSettings["excelPath"] = Server.MapPath("http://dcm.uhcl.edu/capf17gswen2/DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133_"+ConfigurationManager.AppSettings["Year"]+".xlsx");
                         
                         GridView1.DataSource = dal.GetAllCourses(deptName);
+                        GridView1.DataBind();
                         GridView2.DataSource = dal.GetAllMandatoryCoursesByDept(deptName);
+                        GridView2.DataBind();
                         GridView3.DataSource = dal.GetAllElectiveCoursesByDept(deptName);
 
-                        GridView1.DataBind();
-                        GridView2.DataBind();
+                        
+                        
                         GridView3.DataBind();
                                         
 
                     }
                     else
                     {
-                        Server.Transfer("Error.aspx");
+                        Response.Redirect("Error.aspx");
                     }
                 }
             }
@@ -55,22 +96,22 @@ namespace AchieversCPS
 
         protected void generateForm_Click(object sender, EventArgs e)
         {
-            Server.Transfer("~/AcadAdvisor.aspx");
+            Response.Redirect("~/AcadAdvisor.aspx");
         }
 
         protected void auditCPS_Click(object sender, EventArgs e)
         {
-            Server.Transfer("~/AcadAdvisor.aspx");
+            Response.Redirect("~/AcadAdvisor.aspx");
         }
 
         protected void modifyCPS_Click(object sender, EventArgs e)
         {
-            Server.Transfer("~/AcadAdvisor.aspx");
+            Response.Redirect("~/AcadAdvisor.aspx");
         }
 
         protected void addCatalog_Click(object sender, EventArgs e)
         {
-            Server.Transfer("~/AcadAdvisor.aspx");
+            Response.Redirect("~/AcadAdvisor.aspx");
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -168,7 +209,8 @@ namespace AchieversCPS
             int count= business.GenerateInitialCPS(cpsList);
             if(count==cpsList.Count)
             {
-
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Message", "<script> alert('Form Generated Successfully!!')</script>");
+                Response.Redirect("~/AcadAdvisor.aspx");
             }
         }
 

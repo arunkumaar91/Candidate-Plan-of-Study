@@ -52,25 +52,44 @@ namespace AchieversCPS
         private void BindData(int stdId)
         {
             grdCoreCourses.DataSource = bizl.GetCoreCourses(stdId);
+            if(bizl.GetCoreCourses(stdId).Count>0)
+            {
+                lblCore.Text = "Core Courses:";
+            }
             grdfdnCourses.DataSource = bizl.GetFoundationCourses(stdId);
-            grdElectiveCourses.DataSource = bizl.GetElectiveCourses(stdId);            
+            if(bizl.GetFoundationCourses(stdId).Count>0)
+            {
+                lblFoundation.Text="Foundation Courses";
+            }
+            grdElectiveCourses.DataSource = bizl.GetElectiveCourses(stdId);
+            if (bizl.GetElectiveCourses(stdId).Count > 0)
+            {
+                lblElective.Text = "Elective Courses";
+            }
             grdCoreCourses.DataBind();
             grdElectiveCourses.DataBind();
             grdfdnCourses.DataBind();
         }
-
+        
         protected void initialCPS_Click1(object sender, EventArgs e)
         {
             initialCPSPanel.Visible = true;
             CPSChangeFormPanel.Visible = false;
             viewPrintCPSPanel.Visible = false;
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "DefaultPDF's\\" + std.ProgramName + ".pdf"))
-            { 
-                this.Path = @"\DefaultPDF's\"+std.ProgramName+".pdf";
+            //this.Path = HttpContext.Current.Server.MapPath("DefaultPDF's/pdf-sample.pdf");
+           // this.Path = HttpContext.Current.Server.MapPath("pdf-sample.pdf");
+            string filePath = "http://dcm.uhcl.edu/capf17gswen2/DefaultPDF's/" + std.ProgramName + ".pdf";
+            bool exists = false;
+            HttpWebRequest request = (HttpWebRequest)System.Net.WebRequest.Create(filePath);
+            HttpWebResponse response=(HttpWebResponse)request.GetResponse();
+            exists=response.StatusCode==HttpStatusCode.OK;
+           if (exists)
+            {
+                this.Path = "http://dcm.uhcl.edu/capf17gswen2/DefaultPDF's/" + std.ProgramName + ".pdf";
             }
             else
             {
-                this.Path = @"\DefaultPDF's\pdf-sample.pdf";
+                this.Path = "http://dcm.uhcl.edu/capf17gswen2/DefaultPDF's/pdf-sample.pdf";
             }
         }
 
@@ -91,6 +110,7 @@ namespace AchieversCPS
             viewPrintCPSPanel.Visible = true;
             lblAdmitted.Text = std.StartYear.ToString();
             lblSemester.Text = std.semester;
+            lblDept.Text = std.ProgramName;
             BindData(std.StudentId);
         }
 
@@ -102,10 +122,10 @@ namespace AchieversCPS
                 {
                     //To Export all pages
                     //GridView1.AllowPaging = false;
-                    this.BindData(std.StudentId);
+                    //this.BindData(std.StudentId);
                     viewPrintCPSPanel.RenderControl(hw);
                     StringReader sr = new StringReader(sw.ToString());
-                    Document pdfDoc = new Document(PageSize.A2, 10f, 10f, 10f, 0f);
+                    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 10f);
                     HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
                     PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
                     pdfDoc.Open();

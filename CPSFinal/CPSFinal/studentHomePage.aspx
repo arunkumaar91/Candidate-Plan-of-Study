@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>UHCL - SCE Candidate Plan of Study</title>
     <!-- Custom CSS -->
-    <link href="css/studentpage.css" rel="stylesheet" />
-    <link href="css/StudentPageFooter1.css" rel="stylesheet" />
+    <link href="css/studentpage3.css" rel="stylesheet" />
+    <link href="css/studentpagefooter2.css" rel="stylesheet" />
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
@@ -83,49 +83,85 @@
             </div>
             <div id="ClassPanel">
                 <asp:Panel ID="initialCPSPanel" Visible="false" runat="server" CssClass="panel">
-                    <iframe src="<%=this.Path %>" height="700" width="700"></iframe>
+                    <div class="accordian panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">View Initial CPS
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Below document is your initial candidate plan of study for your major.  
+                            </div>
+                        </div>
+                    </div>
+                    <br />
 
+                    <iframe src="<%=this.Path %>" height="700" width="700"></iframe>
                 </asp:Panel>
-                <asp:Panel ID="viewPrintCPSPanel" Visible="false" runat="server">
+                <asp:Panel ID="viewPrintCPSPanel" Visible="false" runat="server" CssClass="panel">
                     <table style="align-content: center; text-align: center; align-self: auto">
-                        <tr>
+                        <tr style="text-align:left">
                             <td>Name:<asp:Label ID="lblName" runat="server" Text="Label"></asp:Label>
                             </td>
                             <td>Dept:<asp:Label ID="lblDept" runat="server" Text="" />
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="text-align:left">
                             <td>Semester Admitted:<asp:Label ID="lblSemester" runat="server" Text="" />
                             </td>
                             <td>Year Admitted:
                                 <asp:Label ID="lblAdmitted" runat="server" Text="" />
                             </td>
                         </tr>
-                        <tr>
-                            <td>
+                        <tr style="text-align:left">
+                            <td colspan="2" style="text-align:left">
+                                <asp:Label ID="lblFoundation" runat="server" Text="" />
                                 <br />
-                                <asp:GridView ID="grdfdnCourses" runat="server"></asp:GridView>
+                                <asp:GridView ID="grdfdnCourses" runat="server">
+                                    <EditRowStyle BorderStyle="None" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:GridView>
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="2" style="text-align:left">
+                                <asp:Label ID="lblCore" runat="server" Text=""  />
+                                <br />
                                 <asp:GridView ID="grdCoreCourses" runat="server"></asp:GridView>
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="2" style="text-align:left">
+                                <asp:Label ID="lblElective" runat="server" Text="" />
+                                <br />
                                 <asp:GridView ID="grdElectiveCourses" runat="server"></asp:GridView>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <asp:Button ID="btnPrint" runat="server" Text="Print PDF" OnClick="btnPrint_Click" />
+                            <td colspan="2">
+                                <asp:Button ID="btnPrint" runat="server" Text="Print PDF" OnClick="btnPrint_Click" CssClass="btn btn-secondary" />
                             </td>
                         </tr>
                     </table>
                 </asp:Panel>
                 <asp:Panel ID="CPSChangeFormPanel" Visible="false" runat="server" CssClass="panel">
-                    <object data="DefaultPDF's/cpschange-form.pdf" type="application/pdf" height="600" width="800"></object>
+                    <div class="accordian panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Change CPS Form
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Download and fill the below form to change courses in the CPS. Submit it to concerned department.  
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <object data="http://dcm.uhcl.edu/capf17gswen2/DefaultPDF's/cpschange-form.pdf" type="application/pdf" height="600" width="800"></object>
                 </asp:Panel>
             </div>
             <br />

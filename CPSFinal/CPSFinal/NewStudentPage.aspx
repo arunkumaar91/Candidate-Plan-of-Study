@@ -9,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>UHCL - SCE Candidate Plan of Study</title>
     <!-- Custom CSS -->
-    <link href="css/acadadvisorpage.css" rel="stylesheet" />
-    <link href="css/loginfooter.css" rel="stylesheet" />
+    <link href="css/NewStudentPage.css" rel="stylesheet" />
+    <link href="css/acadadvisorpage3.css" rel="stylesheet" />
+    <link href="css/loginfooter2.css" rel="stylesheet" />
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
@@ -76,19 +77,16 @@
             </div>
         </div>
 
-        <div>
-            <asp:Panel ID="pnlViewStudent" runat="server">
+        <div id="ClassPanel">
+            <asp:Panel ID="generateformpanel" runat="server" CssClass="panel gen">
                 <asp:FormView ID="fvStudents" runat="server" HorizontalAlign="Center">
                     <ItemTemplate>
-                        <table>
-
+                        <table class="table fnstyle">
                             <tr>
                                 <td>
                                     <b>Student Name: </b>
                                     <asp:Label ID="Label4" runat="server" Text='<%# Eval(" StudentName") %>'></asp:Label>
-
                                 </td>
-
                                 <td>
                                     <b>Student Id: </b>
                                     <asp:Label ID="Label2" runat="server" Text='<%# Eval("StudentId") %>'></asp:Label>
@@ -98,9 +96,7 @@
                                 <td>
                                     <b>Dept Name: </b>
                                     <asp:Label ID="Label1" runat="server" Text='<%# Eval(" ProgramName") %>'></asp:Label>
-
                                 </td>
-
                                 <td>
                                     <b>Degree Type: </b>
                                     <asp:Label ID="Label3" runat="server" Text='<%# Eval("degreeType") %>'></asp:Label>
@@ -110,9 +106,7 @@
                                 <td>
                                     <b>Semester: </b>
                                     <asp:Label ID="Label5" runat="server" Text='<%# Eval(" semester") %>'></asp:Label>
-
                                 </td>
-
                                 <td>
                                     <b>Start Year: </b>
                                     <asp:Label ID="Label6" runat="server" Text='<%# Eval("StartYear") %>'></asp:Label>
@@ -122,51 +116,43 @@
                     </ItemTemplate>
                 </asp:FormView>
 
-            </asp:Panel>
-            <asp:Panel ID="pnlFoundation" runat="server">
-                <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-
+                <!-- FOUNDATION COURSES -->
+                <h5>Foundation Courses</h5>
+                <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CssClass="table">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:CheckBox ID="CheckBox1" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-
                     </Columns>
                 </asp:GridView>
 
-
-
-            </asp:Panel>
-
-            <asp:Panel ID="pnlCore" runat="server">
-                <asp:GridView ID="GridView2" runat="server">
-
+                <!-- CORE COURSES -->
+                <h5>Core Courses</h5>
+                <asp:GridView ID="GridView2" runat="server" CssClass="table">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:CheckBox ID="CheckBox2" runat="server" />
+                                <asp:CheckBox ID="CheckBox2" Checked="true" Enabled="false" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-
                     </Columns>
                 </asp:GridView>
-            </asp:Panel>
-            <asp:Panel ID="pnlElective" runat="server">
-                <asp:GridView ID="GridView3" runat="server">
 
+                <!-- ELECTIVE COURSES -->
+                <h5>Elective Courses</h5>
+                <asp:GridView ID="GridView3" runat="server" CssClass="table">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:CheckBox ID="CheckBox3" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-
                     </Columns>
                 </asp:GridView>
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
-
+                <br />
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" CssClass="butn" />
             </asp:Panel>
         </div>
         <footer>

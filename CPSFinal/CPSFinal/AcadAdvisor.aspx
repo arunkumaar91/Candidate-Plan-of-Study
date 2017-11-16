@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>UHCL - SCE Candidate Plan of Study</title>
     <!-- Custom CSS -->
-    <link href="css/acadadvisorpage.css" rel="stylesheet" />
-    <link href="css/loginfooter.css" rel="stylesheet" />
+    <link href="css/acadadvisorpage3.css" rel="stylesheet" />
+    <link href="css/acadadvisorfooter2.css" rel="stylesheet" />
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
@@ -82,7 +82,24 @@
         </div>
 
         <div id="ClassPanel">
+
+            <!-- GENERATE FORM PANEL -->
+
             <asp:Panel ID="generateformpanel" Visible="false" runat="server" CssClass="panel gen">
+                <div class="accordian panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Generate CPS Form
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            In this page you can generate new cps forms for the students based on the student enrollment year and semester    
+                        </div>
+                    </div>
+                </div>
+                <br />
                 <table>
                     <tr>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -99,36 +116,56 @@
                                 <asp:ListItem>Summer</asp:ListItem>
                                 <asp:ListItem>Fall</asp:ListItem>
                             </asp:DropDownList>
-                            
                         </td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:TextBox ID="txt_year" runat="server"></asp:TextBox>
-                            <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txt_year" MinimumValue="1965"  ErrorMessage="Enter a year between 1965 and today" Display="Dynamic" OnInit="RangeValidator1_Init">*</asp:RangeValidator>
+                            <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txt_year" MinimumValue="1965" ErrorMessage="Enter a year between 1965 and today" Display="Dynamic" OnInit="RangeValidator1_Init">*</asp:RangeValidator>
                         </td>
                         <td>&nbsp;<asp:Button ID="btn_viewStudentList" runat="server" CssClass="viewbtn" Text="View Student List" OnClick="btn_viewStudentList_Click" />
                         </td>
-
-
                     </tr>
                 </table>
-                <table style="align-content: center; text-align: center; align-self: auto">
+                <br />
+                <table>
                     <tr>
                         <td>
-                            <asp:GridView ID="grdAllStudents" runat="server">
+                            <asp:GridView ID="grdAllStudents" runat="server" CssClass="table">
                                 <Columns>
-                                    <asp:HyperLinkField  DataTextField="studentId" DataNavigateUrlFields="studentId" DataNavigateUrlFormatString="NewStudentPage.aspx?sid={0}" HeaderText="View Student" SortExpression="studentId" />
+                                    <asp:HyperLinkField DataTextField="studentId" DataNavigateUrlFields="studentId" DataNavigateUrlFormatString="NewStudentPage.aspx?sid={0}" HeaderText="View Student" SortExpression="studentId" />
                                 </Columns>
                             </asp:GridView>
                         </td>
                     </tr>
                 </table>
             </asp:Panel>
-            <asp:Panel ID="AddCatalogPanel" Visible="false" runat="server">
 
-                <asp:Label ID="lblCatalog" runat="server" Text="You can download Catalog by clicking button below!!"></asp:Label>
-                <asp:Button ID="btnDownload" runat="server" Text="Download Catalog" OnClick="btnDownload_Click" />
-                <asp:FileUpload ID="FileUpload1" runat="server" />
-                <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click1" />
+            <!-- ADD CATALOG PANEL -->
+            <asp:Panel ID="AddCatalogPanel" Visible="false" runat="server" CssClass="panel">
+                <div class="accordian panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Add Catalog
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            In this page you can download, modify and upload the UHCL academic catalog for the current year.  
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <asp:Label ID="lblCatalog" runat="server" Text="Download the current academic year catalog"></asp:Label><br />
+                <br />
+                
+                <asp:Button ID="btnDownload" runat="server" Text="Download Catalog" CssClass="butn" OnClick="btnDownload_Click" />
+                <br />
+                <br />
+                <p>Upload the modified academic calender catalog</p>
+                <br />
+                <asp:FileUpload ID="FileUpload1" CssClass="butn" runat="server" />
+                <br />
+                <asp:Button ID="btnUpload" runat="server" Text="Upload" CssClass="butn" OnClick="btnUpload_Click1" />
             </asp:Panel>
         </div>
 
@@ -163,8 +200,7 @@
             <!--Contact me div-->
         </footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js">
-        </script>
+        <script src="js/bootstrap.min.js"></script>
     </form>
 </body>
 </html>

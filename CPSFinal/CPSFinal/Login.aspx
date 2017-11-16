@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>UHCL - SCE Candidate Plan of Study</title>
     <!-- Custom CSS -->
-    <link href="css/main.css" rel="stylesheet" />
-    <link href="css/loginFooter1.css" rel="stylesheet" />
+    <link href="css/main1.css" rel="stylesheet" />
+    <link href="css/loginfooter2.css" rel="stylesheet" />
     <!-- Bootstrap Core CSS -->
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
@@ -36,7 +36,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
+            <div class="container" style="background-color: #016390">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="color: white">
                         <span class="sr-only">Toggle navigation</span>
@@ -114,7 +114,8 @@
                         ErrorMessage="Please enter password." ControlToValidate="Password"
                         Display="Dynamic" SetFocusOnError="True" CssClass="alert-danger" ValidationGroup="alertGrp" />
                     <br />
-                    <asp:HyperLink ID="hplPassword" NavigateUrl="~/ForgotPassword.aspx" runat="server">Forgot Password Click here!!</asp:HyperLink>
+                    <br />
+                    <asp:HyperLink ID="hplPassword" CssClass="forgotpwd" NavigateUrl="~/ForgotPassword.aspx" runat="server">Forgot Password?</asp:HyperLink>
                     <br />
                 </div>
                 <div class="signIn">
@@ -132,7 +133,7 @@
                             <span id="add">Bayou Building 3611
                         2700 Bay Area Blvd, Box 415
                         Houston, TX 77058-1002
-                        </span>
+                            </span>
                         </div>
                         <div>
                             <span id="ph">Phone: 281-283-3700</span>

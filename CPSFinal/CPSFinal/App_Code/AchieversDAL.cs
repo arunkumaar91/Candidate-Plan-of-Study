@@ -67,7 +67,9 @@ namespace AchieversCPS
         List<Users> allUsers = new List<Users>();
         SqlConnection conn1 = new SqlConnection(@"Data Source=dcm.uhcl.edu;Initial Catalog=c432016sp01hemania;User ID=hemania;Password=1456068");
         SqlConnection conn2 = new SqlConnection(@"Data Source=dcm.uhcl.edu;Initial Catalog=capf17gswen2;Persist Security Info=True;User ID=capf17gswen2;Password=3827039");
-        OleDbConnection MyConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+AppDomain.CurrentDomain.BaseDirectory + "DefaultPDF's\\"+"UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx;Extended Properties='Excel 8.0;HDR=Yes'");
+
+        OleDbConnection MyConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"DefaultPDF's\UHCL_EM_ACTIVE_COURSE_CATALOG_7133_"+ConfigurationManager.AppSettings["Year"] + ".xlsx; Extended Properties='Excel 8.0;HDR=Yes'");
+        
         public List<Users> GetAllUsers(string usernumber, string password)
         {
             try
@@ -86,6 +88,7 @@ namespace AchieversCPS
                     {
                         Users user = new Users();
                         user.Userid= reader["userId"].ToString();
+                        user.FullName = reader["Full Name"].ToString();
                         user.Password = reader["pass"].ToString();
                         user.Role = reader["roleOfperson"].ToString();
                         allUsers.Add(user);
@@ -156,15 +159,13 @@ namespace AchieversCPS
             List<CourseClass> courses = new List<CourseClass>();
             try
             {
+                MyConnection.Open();
                 
-                OleDbCommand myCommand = new OleDbCommand();
                 string sql = null;
                 
-                MyConnection.Open();
-                myCommand.Connection = MyConnection;
-                sql = "SELECT [Subject],[Catalog],[Long Title],[Min Units] FROM [Sheet1$] where "+deptName+"='FOUN'";
-
-                myCommand.CommandText = sql;
+                sql = "SELECT [Subject],[Catalog],[Long Title],[Min Units] FROM [sheet1$] where "+deptName+"='FOUN'";
+                OleDbCommand myCommand = new OleDbCommand(sql,MyConnection);
+                //myCommand.CommandText = sql;
                 OleDbDataReader reader = myCommand.ExecuteReader();
                 
                 if(reader.HasRows)
@@ -505,7 +506,7 @@ namespace AchieversCPS
 
                 SqlCommand selectCommand = new SqlCommand("dbo.uspGetUserById", conn1);
                 selectCommand.CommandType = CommandType.StoredProcedure;
-                selectCommand.Parameters.AddWithValue("@ipvUserId", userId);
+                selectCommand.Parameters.AddWithValue("@ipvUserId", int.Parse(userId));
                 SqlDataReader reader = selectCommand.ExecuteReader();
                 if (reader.HasRows)
                 {

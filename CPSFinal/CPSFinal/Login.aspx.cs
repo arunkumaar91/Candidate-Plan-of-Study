@@ -27,23 +27,23 @@ namespace AchieversCPS
             }
             else if (uList.Count == 1)
             {
-                Users user = new Users();
-                foreach (Users u in uList)
-                {
-                    user = u;
-                }
-                Session["user"] = user;
-                Session["userRole"] = user.Role;
-                Session["userId"] = user.Userid;
-                if(user.Role=="Student")
+                
+                Session["user"] = uList[0];
+                Session["userRole"] = uList[0].Role;
+                Session["userId"] = uList[0].Userid;
+                if(uList[0].Role=="Student")
                 {
                     Response.Redirect("~\\studentHomePage.aspx");
                 }
-                else if(user.Role=="Academic")
+                else if(uList[0].Role=="Academic")
                 {
                     Response.Redirect("~\\AcadAdvisor.aspx");
                 }
-                else if(user.Role=="Faculty")
+                else if(uList[0].Role=="Faculty")
+                {
+                    Response.Redirect("~\\FacultyAdvisor.aspx");
+                }
+                else if (uList[0].Role == "Secratery")
                 {
                     Response.Redirect("~\\FacultyAdvisor.aspx");
                 }

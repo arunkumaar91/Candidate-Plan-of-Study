@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -13,13 +14,13 @@ namespace AchieversCPS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { 
+            
             if (Session["userRole"] == null)
             {
                 Session["user"] = null;
                 Response.Redirect("Login.aspx");
             }
-            else if (Session["userRole"].ToString() == "academic")
+            else if (Session["userRole"].ToString() == "Academic")
             {
                 Users user = new Users();
                 user = (Users)(Session["user"]);
@@ -27,8 +28,6 @@ namespace AchieversCPS
             }
             AchieversDAL dal = new AchieversDAL();
             
-           
-            }
         }
         protected void sgnButton_Click(object sender, EventArgs e)
         {
@@ -66,7 +65,8 @@ namespace AchieversCPS
             Response.ContentType = "Application/xlsx";
             Response.AppendHeader("Content-Disposition", "attachment; filename=UHCL_EM_ACTIVE_COURSE_CATALOG_7133_"+DateTime.Now.Year+".xlsx");
             //string path =  AppDomain.CurrentDomain.BaseDirectory + @"DefaultPDF's\UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx";
-            Response.TransmitFile(Server.MapPath("~/DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133.xlsx"));
+            
+            Response.TransmitFile(Server.MapPath("~/DefaultPDF's/UHCL_EM_ACTIVE_COURSE_CATALOG_7133_"+DateTime.Now.Year+".xlsx"));
             Response.End();
         }
 

@@ -1827,7 +1827,7 @@ pre {
     margin-right: auto;
     margin-left: auto;
     color: white;
-    background-color: steelblue;
+    background-color: #016390;
 }
 
 @media (min-width:768px) {
@@ -3398,7 +3398,7 @@ select[multiple].input-lg, textarea.input-lg {
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 0px;
     background-color: #018744;
     color: white;
     font-family: Oswald;

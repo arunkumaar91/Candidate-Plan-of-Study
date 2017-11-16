@@ -76,13 +76,13 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.Button addCatalog;
         
         /// <summary>
-        /// pnlViewStudent control.
+        /// generateformpanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlViewStudent;
+        protected global::System.Web.UI.WebControls.Panel generateformpanel;
         
         /// <summary>
         /// fvStudents control.
@@ -94,15 +94,6 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.FormView fvStudents;
         
         /// <summary>
-        /// pnlFoundation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFoundation;
-        
-        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>
@@ -112,15 +103,6 @@ namespace AchieversCPS {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// pnlCore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCore;
-        
-        /// <summary>
         /// GridView2 control.
         /// </summary>
         /// <remarks>
@@ -128,15 +110,6 @@ namespace AchieversCPS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView2;
-        
-        /// <summary>
-        /// pnlElective control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlElective;
         
         /// <summary>
         /// GridView3 control.
