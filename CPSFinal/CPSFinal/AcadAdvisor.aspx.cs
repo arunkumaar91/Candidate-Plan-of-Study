@@ -11,7 +11,7 @@ namespace AchieversCPS
 {
     public partial class AcadAdvisor : System.Web.UI.Page
     {
-
+        AchieversBL bizl = new AchieversBL();
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -25,6 +25,10 @@ namespace AchieversCPS
                 Users user = new Users();
                 user = (Users)(Session["user"]);
                 sgnName.Text = user.FullName;
+                //if(Page.PreviousPage.FindControl("NewStudentPage.aspx")==true)
+                //{
+
+                //}
             }
             AchieversDAL dal = new AchieversDAL();
             
@@ -41,13 +45,14 @@ namespace AchieversCPS
         {
             generateformpanel.Visible = true;
             AddCatalogPanel.Visible = false;
+            pnlCatalog.Visible = false;
         }
 
         protected void addCatalog_Click(object sender, EventArgs e)
         {
-            AddCatalogPanel.Visible = true;
+            AddCatalogPanel.Visible = false;
             generateformpanel.Visible = false;
-            
+            pnlCatalog.Visible = true;
         }
 
         protected void btn_viewStudentList_Click(object sender, EventArgs e)
@@ -85,13 +90,81 @@ namespace AchieversCPS
             else
             {
                 Response.Write("Please upload excel file");
-            }
-            
+            }            
         }
 
         protected void RangeValidator1_Init(object sender, EventArgs e)
         {
             ((RangeValidator)sender).MaximumValue = DateTime.Now.Year.ToString();
+        }
+
+        protected void rdoAddCatalog_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rdoAddCatalog.Checked==true)
+            {
+                AddCatalogPanel.Visible = true;
+                pnlAddCourse.Visible = false;
+                rdoAddCourse.Checked = false;
+            }
+           
+        }       
+
+        protected void rdoAddCourse_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoAddCourse.Checked == true)
+            {
+                AddCatalogPanel.Visible = false;
+                pnlAddCourse.Visible = true;
+                rdoAddCatalog.Checked = false;
+                
+            }
+            
+        }
+
+        protected void BtnReset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAddCourse_Click(object sender, EventArgs e)
+        {
+            AddCourse course = new AddCourse();
+            course.courseRubric=ddlRubric.SelectedValue;
+            course.className = txtCourseName.Text;
+            course.courseNumber = int.Parse(txtNumber.Text);
+            course.units = int.Parse(ddlUnits.SelectedItem.Text);
+            course.CourseType = ddlCourseType.SelectedValue;
+            course.Year = DateTime.Now.Year;
+            course.DeptName= ddlDept.SelectedValue;
+            bool isAdded = bizl.AddNewCourse(course);
+            if(isAdded)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Message", "<script>alert('New Course" +course.className+ "added successfully!!!')</script>");
+                txtNumber.Text = "";
+                txtCourseName.Text = "";
+                txt_year.Text = string.Empty;
+                ddlCourseType.SelectedIndex = 0;
+                ddlDept.SelectedIndex = 0;
+                ddlRubric.SelectedIndex = 0;
+                ddlSem.SelectedIndex = 0;
+                ddlUnits.SelectedIndex = 0;
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Message", "<script>alert('New Course addition unsuccessfully!!!')</script>");
+            }
+        }
+
+        protected void auditCPS_Click(object sender, EventArgs e)
+        {
+            generateformpanel.Visible = false;
+            pnlCatalog.Visible = false;
+        }
+
+        protected void modifyCPS_Click(object sender, EventArgs e)
+        {
+            generateformpanel.Visible = false;
+            pnlCatalog.Visible = false;
         }
     }
 }

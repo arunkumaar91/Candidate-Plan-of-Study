@@ -5,6 +5,9 @@ using System.Web;
 
 namespace AchieversCPS
 {
+    /// <summary>
+    /// Created for student details used in login,getallstudents get students by faculty,etc modules
+    /// </summary>
     public class Student
     {
         public int StudentId { get; set; }
@@ -15,8 +18,8 @@ namespace AchieversCPS
         public int FacultyAdvisorId { get; set; }
         public string degreeType { get; set; }
         public string semester { get; set; }
-        public int  StartYear { get; set; }
-        
+        public int StartYear { get; set; }
+
 
     }
 }
